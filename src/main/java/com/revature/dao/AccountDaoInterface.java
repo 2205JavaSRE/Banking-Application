@@ -1,4 +1,4 @@
 package com.revature.dao;
 
-public class AccountDaoInterface {
+public interface AccountDaoInterface {
 }
