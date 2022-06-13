@@ -14,5 +14,10 @@ public class AuthenticationService {
 			return true;
 		}
 	}
+
+	public static boolean createUser(User u) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

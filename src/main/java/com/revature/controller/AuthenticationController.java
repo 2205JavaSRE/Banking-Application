@@ -28,4 +28,13 @@ public class AuthenticationController {
             return false;
         }
     }
+    
+    public static void createUser(Context ctx) {
+    	User u = ctx.bodyAsClass(User.class);
+    	
+    	if (!AuthenticationService.createUser(u)) {
+    		ctx.status(HttpStatus.BAD_REQUEST_400);
+    	}
+    }
+    
 }
