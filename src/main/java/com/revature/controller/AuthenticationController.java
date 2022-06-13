@@ -9,7 +9,7 @@ import org.eclipse.jetty.http.HttpStatus;
 public class AuthenticationController {
     public static void authenticate(Context ctx){
         User login = ctx.bodyAsClass(User.class);
-        boolean access = AuthenticationService.authenticateUser(login.getUsername(), login.getPassword());
+        boolean access = AuthenticationService.authenticate(login.getUsername(), login.getPassword());
         if(access){
             ctx.status(HttpStatus.OK_200);
             User u = UserService.getUser(login.getUsername());
