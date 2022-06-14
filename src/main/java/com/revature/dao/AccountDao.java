@@ -21,11 +21,11 @@ public class AccountDao implements AccountDaoInterface {
     public void insertAccount(Account account, User user) {
         //int accountID, int primaryOwnerID, int secondaryOwnerID, AccountType accountType, double balance, boolean approved
         String sql = "insert into accounts (primary_owner_id, account_type, balance, approved) values " +
-                "((select user_id from users where username = ?),?,?,?)";
+                "((select user_id from users where username = ?),?::a_type,?,?)";
         Connection connection = ConnectionFactory.getConnection();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setString(1, user.getUsername()); //should be userID
+            ps.setString(1, user.getUsername());
             ps.setString(2, account.getAccountType().name());
             ps.setDouble(3, account.getBalance());
             ps.setBoolean(4, false);

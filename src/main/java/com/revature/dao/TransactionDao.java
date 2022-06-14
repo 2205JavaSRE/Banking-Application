@@ -13,20 +13,19 @@ public class TransactionDao implements TransactionDaoInterface {
     public void insertTransaction(Transaction transaction) {
         //int transactionID, TransactionType transactionType, int originAccount, int destinationAccount,
         // double transactionAmount, Timestamp timestamp, TransactionStatus transactionStatus
-        String sql = "insert into transactions (transaction_id, transaction_type, origin_account, destination_account, transaction_amount, transaction_time, status) " +
-                "values (?,?,?,?,?,?,?)";
+        String sql = "insert into transactions (transaction_type, origin_account_id, destination_account_id, transaction_amount, transaction_time, status) " +
+                "values (?::t_type,?,?,?,?,?::t_status)";
 
         Connection connection = ConnectionFactory.getConnection();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
 
-            ps.setInt(1, transaction.getTransactionID());
-            ps.setString(2, transaction.getTransactionType().name());
-            ps.setInt(3, transaction.getOriginAccount());
-            ps.setInt(4, transaction.getDestinationAccount());
-            ps.setDouble(5, transaction.getTransactionAmount());
-            ps.setTimestamp(6, transaction.getTimestamp());
-            ps.setString(7, transaction.getTransactionStatus().name());
+            ps.setString(1, transaction.getTransactionType().name());
+            ps.setInt(2, transaction.getOriginAccount());
+            ps.setInt(3, transaction.getDestinationAccount());
+            ps.setDouble(4, transaction.getTransactionAmount());
+            ps.setTimestamp(5, transaction.getTimestamp());
+            ps.setString(6, transaction.getTransactionStatus().name());
             ps.execute();
 
 
@@ -48,10 +47,10 @@ public class TransactionDao implements TransactionDaoInterface {
                 Transaction transaction = new Transaction(
                         rs.getInt("transaction_id"),
                         TransactionType.valueOf(rs.getString("transaction_type")),
-                        rs.getInt("origin_account"),
-                        rs.getInt("destination_account"),
+                        rs.getInt("origin_account_id"),
+                        rs.getInt("destination_account_id"),
                         rs.getDouble("transaction_amount"),
-                        rs.getTimestamp("timestamp"),
+                        rs.getTimestamp("transaction_time"),
                         TransactionStatus.valueOf(rs.getString("status"))
                 );
                 transactions.add(transaction);
@@ -78,10 +77,10 @@ public class TransactionDao implements TransactionDaoInterface {
                     Transaction transaction = new Transaction(
                             rs.getInt("transaction_id"),
                             TransactionType.valueOf(rs.getString("transaction_type")),
-                            rs.getInt("origin_account"),
-                            rs.getInt("destination_account"),
+                            rs.getInt("origin_account_id"),
+                            rs.getInt("destination_account_id"),
                             rs.getDouble("transaction_amount"),
-                            rs.getTimestamp("timestamp"),
+                            rs.getTimestamp("transaction_time"),
                             TransactionStatus.valueOf(rs.getString("status"))
                     );
                     transactions.add(transaction);
@@ -98,7 +97,7 @@ public class TransactionDao implements TransactionDaoInterface {
 
     @Override
     public void completeTransaction(Transaction transaction) {
-        String sql = "update transactions set transaction_status = ? where transaction_id = ?";
+        String sql = "update transactions set transaction_status = ?::t_status where transaction_id = ?";
 
         Connection connection = ConnectionFactory.getConnection();
 
@@ -111,6 +110,21 @@ public class TransactionDao implements TransactionDaoInterface {
         }
 
     }
+
+    public void updateTransactionStatus(Transaction transaction){
+        String sql = "update transactions set transaction_status = ?::t_status where transaction_id = ?";
+
+        Connection connection = ConnectionFactory.getConnection();
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, transaction.getTransactionType().name());
+            ps.setInt(2, transaction.getTransactionID());
+            ps.execute();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public Transaction getTransactionByID(int transactionID) {
         String sql = "select * from transactions where transaction_id = ?";
@@ -126,10 +140,10 @@ public class TransactionDao implements TransactionDaoInterface {
                 transaction = new Transaction(
                         rs.getInt("transaction_id"),
                         TransactionType.valueOf(rs.getString("transaction_type")),
-                        rs.getInt("origin_account"),
-                        rs.getInt("destination_account"),
+                        rs.getInt("origin_account_id"),
+                        rs.getInt("destination_account_id"),
                         rs.getDouble("transaction_amount"),
-                        rs.getTimestamp("timestamp"),
+                        rs.getTimestamp("transaction_time"),
                         TransactionStatus.valueOf(rs.getString("status"))
                 );
             }

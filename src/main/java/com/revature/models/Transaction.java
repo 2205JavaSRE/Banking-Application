@@ -1,5 +1,8 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Timestamp;
 
 public class Transaction {
@@ -15,7 +18,7 @@ public class Transaction {
         super();
     }
     /**
-     * To be used for NEW ACCOUNTS ONLY or for Authentication purposes.
+     * To be used for NEW TRANSACTIONS ONLY or for Authentication purposes.
      * transactionID is set to -1,
      * transactionStatus is set to PENDING.
      * @param transactionType
@@ -25,12 +28,13 @@ public class Transaction {
      * @param timestamp
      * @param transactionStatus
      */
-    public Transaction(TransactionType transactionType,
-                       int originAccount,
-                       int destinationAccount,
-                       double transactionAmount,
-                       Timestamp timestamp,
-                       TransactionStatus transactionStatus) {
+    @JsonCreator
+    public Transaction(@JsonProperty("transactionType") TransactionType transactionType,
+                       @JsonProperty("originAccount") int originAccount,
+                       @JsonProperty("destinationAccount") int destinationAccount,
+                       @JsonProperty("transactionAmount") double transactionAmount,
+                       @JsonProperty("timestamp") Timestamp timestamp,
+                       @JsonProperty("transactionStatus")TransactionStatus transactionStatus) {
         this.transactionID = -1;
         this.transactionType = transactionType;
         this.originAccount = originAccount;
