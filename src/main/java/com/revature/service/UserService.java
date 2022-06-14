@@ -8,8 +8,15 @@ public class UserService {
 	private static final UserDao uDao = new UserDao();
 	
 	public static boolean createUser(User u) {
-		// TODO Creat false statement if unsuccessful
-		uDao.insertUser(u);
-		return true;
+		if (uDao.existsByName(u.getUsername())) {
+			return false;
+		} else {
+			uDao.insertUser(u);
+			return true;
+		}
+	}
+
+	public static User getUser(String username) {
+		return uDao.getUserByUsername(username);
 	}
 }

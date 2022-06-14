@@ -7,13 +7,18 @@ import org.eclipse.jetty.http.HttpStatus;
 public class AccountController {
     public static void createAccount(Context ctx){
         User u = ctx.sessionAttribute("user");
-        Account a = ctx.bodyAsClass(Account.class);
         
-        if(!AccountService.createAccount(a, u)){
-            ctx.status(HttpStatus.BAD_REQUEST_400);
-        }else{
-            ctx.status(HttpStatus.CREATED_201);
-        }
+        try {
+        	Account a = ctx.bodyAsClass(Account.class);
+        	
+        	if(!AccountService.createAccount(a, u)){
+                ctx.status(HttpStatus.BAD_REQUEST_400);
+            }else{
+                ctx.status(HttpStatus.CREATED_201);
+            }
+        } catch (Exception e) {
+			ctx.status(HttpStatus.BAD_REQUEST_400);
+		}  
     }
 
     public static void getAccounts(Context ctx){
@@ -39,5 +44,15 @@ public class AccountController {
         }
     }
 
+	public static void updateAccountStatus(Context ctx) {
+		try {
+			Account a = ctx.bodyAsClass(Account.class);
+			AccountService.updateAccountStatus(a);
+		} catch (Exception e) {
+			ctx.status(HttpStatus.BAD_REQUEST_400);
+		}
+	}
+	
+	
 
 }

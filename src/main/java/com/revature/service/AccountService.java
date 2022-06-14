@@ -25,6 +25,13 @@ public class AccountService {
 	public static List<Account> getAccountsById(int userID) {
 		return aDao.getAccountsByOwnerID(userID);
 	}
+	
+	//TODO May change to enum or add delete in dao
+	public static void updateAccountStatus(Account a) {
+		Account target = aDao.getAccountByAccountID(a.getAccountID());
+		target.setApproved(a.isApproved());
+		aDao.updateAccount(target);
+	}
 
 
 

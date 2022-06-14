@@ -30,13 +30,17 @@ public class AuthenticationController {
     }
     
     public static void createUser(Context ctx) {
-    	User u = ctx.bodyAsClass(User.class);
-    	
-    	if (!UserService.createUser(u)) {
+    	try {
+    		User u = ctx.bodyAsClass(User.class);
+        	
+        	if (!UserService.createUser(u)) {
+        		ctx.status(HttpStatus.BAD_REQUEST_400);
+        	}else{
+                ctx.status(HttpStatus.CREATED_201);
+            }
+    	} catch (Exception e) {
     		ctx.status(HttpStatus.BAD_REQUEST_400);
-    	}else{
-            ctx.status(HttpStatus.CREATED_201);
-        }
+    	}
     }
     
 }
