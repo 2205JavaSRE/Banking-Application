@@ -14,8 +14,8 @@ public class AccountDao implements AccountDaoInterface {
     /**
      * Inserts into the database a new account with specified primary_owner_id, accountType, and balance.
      *
-     * @param account MUST NOT ALREADY EXIST IN THE DATABSE. primary and joint owner IDs will be ignored, as will approval status.
-     * @param user MUST ALREADY EXIST IN THE DATABASE. Do not pass a user object without a valid userID from the database.
+     * @param account Primary and joint owner IDs will be ignored, as will approval status.
+     * @param user Do not pass a user object without a valid userID from the database.
      */
     @Override
     public void insertAccount(Account account, User user) {
@@ -35,6 +35,10 @@ public class AccountDao implements AccountDaoInterface {
         }
     }
 
+    /**
+     * Updates the joint_owner_id, balance, and approved columns for a given accountID.
+     * @param account Do not pass an account without a valid accountID from the database.
+     */
     @Override
     public void updateAccount(Account account) {
         String sql = "update accounts set joint_owner_id = ?, balance = ?, approved = ? where account_id = ?";
@@ -51,6 +55,11 @@ public class AccountDao implements AccountDaoInterface {
         }
     }
 
+    /**
+     * Queries the database and returns an account with the specified accountID.
+     * @param accountID Do not pass an invalid accountID.
+     * @return an account with the specified accountID.
+     */
     @Override
     public Account getAccountByAccountID(int accountID) {
         String sql = "select * from accounts where account_id = ?";
@@ -77,6 +86,11 @@ public class AccountDao implements AccountDaoInterface {
         return account;
     }
 
+    /**
+     * Queries the database and returns a list of accounts for the specified ownerID, whether primary or joint.
+     * @param ownerID Do not pass an invalid ownerID.
+     * @return a list of accounts with the specified owner.
+     */
     @Override
     public ArrayList<Account> getAccountsByOwnerID(int ownerID) {
         String sql = "select * from accounts where primary_owner_id = ? or joint_owner_id = ?";
@@ -104,6 +118,11 @@ public class AccountDao implements AccountDaoInterface {
         return accounts;
     }
 
+    /**
+     * Queries the database and returns a list of accounts with the specified approvalStatus.
+     * @param approvalStatus
+     * @return  a list of accounts with the specified approvalStatus.
+     */
     @Override
     public ArrayList<Account> getAccountsByApproval(boolean approvalStatus) {
         String sql = "select * from accounts where approved = ?";
