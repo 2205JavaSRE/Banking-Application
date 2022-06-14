@@ -1,5 +1,5 @@
 package com.revature.controller;
-
+//import com.revature.util.Monitor;
 import io.javalin.Javalin;
 import org.eclipse.jetty.http.HttpStatus;
 
@@ -54,7 +54,7 @@ public class RequestMappings {
                 ctx.status(HttpStatus.UNAUTHORIZED_401);
             }
         });
-        
+
         app.patch("/api/v1/accounts/update", ctx -> {
         	 if(AuthenticationController.verifyUser(ctx)){
                  AccountController.updateAccountStatus(ctx);

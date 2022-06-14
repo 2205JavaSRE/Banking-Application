@@ -1,5 +1,8 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     private int userID;
     private String firstName;
@@ -19,7 +22,11 @@ public class User {
      * @param username
      * @param password
      */
-    public User(String firstName, String lastName, String username, String password) {
+    @JsonCreator
+    public User(@JsonProperty("firstName") String firstName,
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("username") String username,
+                @JsonProperty("password") String password) {
         this.userID = -1;
         this.firstName = firstName;
         this.lastName = lastName;

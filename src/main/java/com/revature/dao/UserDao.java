@@ -11,7 +11,8 @@ public class UserDao implements UserDaoInterface{
     @Override
     public void insertUser(User user) {
         //int userID, String firstName, String lastName, String username, String password, boolean isEmployee)
-        String sql = "insert into users (first_name, last_name, username, password)";
+        String sql = "insert into users (first_name, last_name, username, password) values " +
+                "(?,?,?,?)";
         Connection connection = ConnectionFactory.getConnection();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
@@ -19,6 +20,7 @@ public class UserDao implements UserDaoInterface{
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getUsername());
             ps.setString(4, user.getPassword());
+            ps.execute();
         } catch (SQLException e){
             e.printStackTrace();
         }

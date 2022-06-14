@@ -1,5 +1,8 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Account {
     private int accountID;
     private int primaryOwnerID;
@@ -20,7 +23,10 @@ public class Account {
      * @param accountType
      * @param balance
      */
-    public Account(int primaryOwnerID, AccountType accountType, double balance) {
+    @JsonCreator
+    public Account(@JsonProperty("primaryOwnerID") int primaryOwnerID,
+                   @JsonProperty("accountType") AccountType accountType,
+                   @JsonProperty("balance") double balance) {
         this.accountID = -1;
         this.primaryOwnerID = primaryOwnerID;
         this.jointOwnerID = -1;

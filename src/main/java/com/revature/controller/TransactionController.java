@@ -21,10 +21,10 @@ public class TransactionController {
 
     public static void getAllTransactions(Context ctx){
         User u = ctx.sessionAttribute("user");
-        if(u.isEmployee()){
+/*        if(u.isEmployee()){
             TransactionService.getAllTransactions();
         }else{
             ctx.status(HttpStatus.FORBIDDEN_403);
-        }
+        }*/
     }
 }

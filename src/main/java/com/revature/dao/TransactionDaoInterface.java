@@ -8,6 +8,7 @@ public interface TransactionDaoInterface {
     public ArrayList<Transaction> getAllTransactions();
     public ArrayList<Transaction> getPendingTransactionsByDestinationID(int destinationID);
     public void completeTransaction(Transaction transaction);
+    public void updateTransactionStatus(Transaction transaction);
     public Transaction getTransactionByID(int transactionID);
 
 }
