@@ -26,7 +26,7 @@ public class AccountController {
         if(u.isEmployee()){
             ctx.json(AccountService.getAllPendingAccounts());
         }else{
-            ctx.json(AccountService.getAccountsById(u.getUserID()));
+            ctx.json(AccountService.getAccountsByUserId(u.getUserID()));
         }
     }
 
@@ -35,7 +35,7 @@ public class AccountController {
         if(u.isEmployee()){
             try {
                 int id = Integer.parseInt(ctx.pathParam("id"));
-                ctx.json(AccountService.getAccountsById(id));
+                ctx.json(AccountService.getAccountsByUserId(id));
             }catch(Exception e){
                 ctx.status(HttpStatus.BAD_REQUEST_400);
             }
