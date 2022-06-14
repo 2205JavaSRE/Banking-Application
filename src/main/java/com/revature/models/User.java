@@ -6,6 +6,11 @@ public class User {
     private String lastName;
     private String username;
     private String password;
+    private boolean isEmployee;
+
+    public User(){
+        super();
+    }
 
     /**
      * To be used for NEW USERS ONLY or for Authentication purposes.
@@ -20,6 +25,7 @@ public class User {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.isEmployee = false;
     }
 
     /**
@@ -30,12 +36,13 @@ public class User {
      * @param username
      * @param password
      */
-    public User(int userID, String firstName, String lastName, String username, String password) {
+    public User(int userID, String firstName, String lastName, String username, String password, boolean isEmployee) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.isEmployee = isEmployee;
     }
 
     public int getUserID() {

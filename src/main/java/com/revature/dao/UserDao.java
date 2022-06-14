@@ -8,7 +8,6 @@ public class UserDao implements UserDaoInterface{
     public void insertEmployee(User user) {
 
     }
-
     @Override
     public User getEmployeeByUsername(String username) {
         return null;

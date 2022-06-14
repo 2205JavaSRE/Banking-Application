@@ -11,6 +11,9 @@ public class Transaction {
     private Timestamp timestamp;
     private TransactionStatus transactionStatus;
 
+    public Transaction(){
+        super();
+    }
     /**
      * To be used for NEW ACCOUNTS ONLY or for Authentication purposes.
      * transactionID is set to -1,

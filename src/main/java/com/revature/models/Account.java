@@ -8,6 +8,9 @@ public class Account {
     private double balance;
     private boolean approved;
 
+    public Account(){
+        super();
+    }
     /**
      * To be used for NEW ACCOUNTS ONLY or for authentication purposes.
      * accountID is set to -1,
