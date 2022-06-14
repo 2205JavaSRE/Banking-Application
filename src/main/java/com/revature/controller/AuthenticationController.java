@@ -34,7 +34,9 @@ public class AuthenticationController {
     	
     	if (!AuthenticationService.createUser(u)) {
     		ctx.status(HttpStatus.BAD_REQUEST_400);
-    	}
+    	}else{
+            ctx.status(HttpStatus.CREATED_201);
+        }
     }
     
 }
