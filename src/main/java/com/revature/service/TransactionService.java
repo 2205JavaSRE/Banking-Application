@@ -1,13 +1,15 @@
 package com.revature.service;
 
+import java.util.List;
+
 import com.revature.dao.AccountDao;
 import com.revature.dao.TransactionDao;
 import com.revature.models.*;
 
 public class TransactionService {
 	private static final AccountDao aDao = new AccountDao();
-
 	private static final TransactionDao tDao = new TransactionDao();
+	
 	public static boolean postTransaction(Transaction t, User u) {
 		boolean bool = false;
 		Account a = aDao.getAccountByAccountID(t.getOriginAccount());
@@ -87,8 +89,8 @@ public class TransactionService {
 		}
 	}
 
-	public static void getAllTransactions() {
-		// TODO Auto-generated method stub
+	public static List<Transaction> getAllTransactions() {
+		return tDao.getAllTransactions();
 		
 	}
 
