@@ -50,6 +50,30 @@ public class UserDao implements UserDaoInterface{
     }
 
     @Override
+    public User getUserByUserID(int userID) {
+        String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id where username = ?";
+        Connection connection = ConnectionFactory.getConnection();
+        User user = null;
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int userIDa = rs.getInt("user_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                boolean isEmployee = rs.getBoolean("authorized");
+                user = new User(userIDa, firstName, lastName, username, password, isEmployee);
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
     public ArrayList<User> getAllUsers() {
         //int userID, String firstName, String lastName, String username, String password, boolean isEmployee)
         String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id";
@@ -89,6 +113,24 @@ public class UserDao implements UserDaoInterface{
         boolean exists = false;
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.isBeforeFirst()){
+                exists = true;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return exists;
+    }
+
+    @Override
+    public boolean existsByUserID(int userID) {
+        String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id where user_id = ?";
+        Connection connection = ConnectionFactory.getConnection();
+        boolean exists = false;
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, userID);
             ResultSet rs = ps.executeQuery();
 
             if(rs.isBeforeFirst()){
