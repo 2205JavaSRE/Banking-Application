@@ -26,10 +26,12 @@ public class MainDriver {
 //                               Timestamp timestamp,
 //                               TransactionStatus transactionStatus)
 /*        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Transaction transaction = new Transaction(TransactionType.TRANSFER, 1, 2, 0.77, timestamp, TransactionStatus.PENDING);
+        Transaction transaction = new Transaction(TransactionType.TRANSFER, 4, 5, 0.77, timestamp, TransactionStatus.PENDING);
         System.out.println(transaction);
-        tDao.insertTransaction(transaction);
-        System.out.println(tDao.getTransactionByID(1));*/
-
+        tDao.insertTransaction(transaction);*/
+/*        System.out.println(tDao.getTransactionByID(2));
+        Transaction transaction2 = tDao.getTransactionByID(2);
+        transaction2.setTransactionStatus(TransactionStatus.APPROVED);
+        tDao.updateTransactionStatus(transaction2);*/
     }
 }

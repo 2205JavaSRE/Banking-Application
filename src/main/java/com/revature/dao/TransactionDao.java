@@ -97,7 +97,7 @@ public class TransactionDao implements TransactionDaoInterface {
 
     @Override
     public void completeTransaction(Transaction transaction) {
-        String sql = "update transactions set transaction_status = ?::t_status where transaction_id = ?";
+        String sql = "update transactions set status = ?::t_status where transaction_id = ?";
 
         Connection connection = ConnectionFactory.getConnection();
 
@@ -112,12 +112,12 @@ public class TransactionDao implements TransactionDaoInterface {
     }
 
     public void updateTransactionStatus(Transaction transaction){
-        String sql = "update transactions set transaction_status = ?::t_status where transaction_id = ?";
+        String sql = "update transactions set status = ?::t_status where transaction_id = ?";
 
         Connection connection = ConnectionFactory.getConnection();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setString(1, transaction.getTransactionType().name());
+            ps.setString(1, transaction.getTransactionStatus().name());
             ps.setInt(2, transaction.getTransactionID());
             ps.execute();
         } catch (SQLException e){
