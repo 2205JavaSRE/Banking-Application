@@ -25,7 +25,7 @@ public class AccountDao implements AccountDaoInterface {
         Connection connection = ConnectionFactory.getConnection();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setString(1, user.getUsername());
+            ps.setString(1, user.getUsername()); //should be userID
             ps.setString(2, account.getAccountType().name());
             ps.setDouble(3, account.getBalance());
             ps.setBoolean(4, false);
