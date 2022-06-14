@@ -108,6 +108,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", isEmployee=" + isEmployee +
                 '}';
     }
 }

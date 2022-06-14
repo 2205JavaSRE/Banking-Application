@@ -3,6 +3,8 @@ package com.revature;
 import com.revature.dao.*;
 import com.revature.models.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+
 public class MainDriver {
     public static void main(String[] args){
         System.out.println("Test Main");
@@ -33,5 +35,7 @@ public class MainDriver {
         Transaction transaction2 = tDao.getTransactionByID(2);
         transaction2.setTransactionStatus(TransactionStatus.APPROVED);
         tDao.updateTransactionStatus(transaction2);*/
+/*        ArrayList<User> users = uDao.getAllUsers();
+        System.out.println(users);*/
     }
 }
