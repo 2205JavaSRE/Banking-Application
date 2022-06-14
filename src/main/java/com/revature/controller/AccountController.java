@@ -1,5 +1,5 @@
 package com.revature.controller;
-
+import com.revature.models.*;
 import io.javalin.http.Context;
 import org.eclipse.jetty.http.HttpStatus;
 
