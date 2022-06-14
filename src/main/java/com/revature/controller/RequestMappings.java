@@ -31,6 +31,7 @@ public class RequestMappings {
                ctx.status(HttpStatus.UNAUTHORIZED_401);
            }
         });
+        
         //Dual-purpose get requests
         app.get("/api/v1/accounts", ctx -> {
            if(AuthenticationController.verifyUser(ctx)){
@@ -62,6 +63,14 @@ public class RequestMappings {
              }else{
                  ctx.status(HttpStatus.UNAUTHORIZED_401);
              }
+        });
+        
+        app.patch("/api/v1/transactions", ctx -> {
+        	if(AuthenticationController.verifyUser(ctx)){
+                TransactionController.updateTranfer(ctx);
+            }else{
+                ctx.status(HttpStatus.UNAUTHORIZED_401);
+            }
         });
 
 

@@ -22,9 +22,14 @@ public class TransactionController {
     public static void getAllTransactions(Context ctx){
         User u = ctx.sessionAttribute("user");
         if(u.isEmployee()){
-            TransactionService.getAllTransactions();
+            ctx.json(TransactionService.getAllTransactions());
         }else{
             ctx.status(HttpStatus.FORBIDDEN_403);
         }
     }
+
+	public static void updateTranfer(Context ctx) {
+		TransactionService.updateTransfer(ctx.bodyAsClass(Transaction.class), ctx.sessionAttribute("user"));
+		
+	}
 }
