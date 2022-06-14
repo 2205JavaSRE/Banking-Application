@@ -1,5 +1,8 @@
 package com.revature.dao;
+
 import com.revature.models.Transaction;
+
+import java.util.ArrayList;
 public interface TransactionDaoInterface {
     public void insertTransaction(Transaction transaction);
     public ArrayList<Transaction> getTransactions();

@@ -1,0 +1,4 @@
+Monday, June 13th:
+If we have a merge conflict, we don't fix it ourselves. We'll fix it together in the next standup.
+
+Tuesday, June 14th:
