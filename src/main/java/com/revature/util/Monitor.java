@@ -16,7 +16,7 @@ import java.io.File;
 public class Monitor {
     PrometheusMeterRegistry registry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
 
-    public Counter activeSeesions = Counter
+    public Counter activeSessions = Counter
             .builder("Number of Logins")
             .description("to keep track of how many users have logged in")
             .tag("purpose", "testing")
@@ -33,7 +33,7 @@ public class Monitor {
     }
 
     public void incrementCounter(){
-        activeSeesions.increment();
+        activeSessions.increment();
     }
 
 
