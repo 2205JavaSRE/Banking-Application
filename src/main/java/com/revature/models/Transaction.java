@@ -13,6 +13,8 @@ public class Transaction {
 
     /**
      * To be used for NEW ACCOUNTS ONLY or for Authentication purposes.
+     * transactionID is set to -1 and,
+     * transactionStatus is set to PENDING.
      * @param transactionType
      * @param originAccount
      * @param destinationAccount
@@ -20,7 +22,12 @@ public class Transaction {
      * @param timestamp
      * @param transactionStatus
      */
-    public Transaction(TransactionType transactionType, int originAccount, int destinationAccount, double transactionAmount, Timestamp timestamp, TransactionStatus transactionStatus) {
+    public Transaction(TransactionType transactionType,
+                       int originAccount,
+                       int destinationAccount,
+                       double transactionAmount,
+                       Timestamp timestamp,
+                       TransactionStatus transactionStatus) {
         this.transactionID = -1;
         this.transactionType = transactionType;
         this.originAccount = originAccount;
