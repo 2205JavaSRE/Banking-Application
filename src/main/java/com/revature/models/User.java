@@ -85,6 +85,14 @@ public class User {
         this.password = password;
     }
 
+    public boolean isEmployee() {
+        return isEmployee;
+    }
+
+    public void setEmployee(boolean employee) {
+        isEmployee = employee;
+    }
+
     @Override
     public String toString() {
         return "User{" +

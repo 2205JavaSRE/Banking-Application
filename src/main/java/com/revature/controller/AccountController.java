@@ -5,6 +5,7 @@ import org.eclipse.jetty.http.HttpStatus;
 
 public class AccountController {
     public static void createAccount(Context ctx){
+        User
         Account a = ctx.bodyAsClass(Account.class);
         if(!AccountService.createAccount(a)){
             ctx.status(HttpStatus.BAD_REQUEST_400);
