@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.dao.UserDao;
+import com.revature.models.User;
 
 public class AuthenticationService {
 	
@@ -13,11 +14,6 @@ public class AuthenticationService {
 		} else {
 			return true;
 		}
-	}
-
-	public static boolean createUser(User u) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
