@@ -12,4 +12,13 @@ public class TransactionController {
             ctx.status(HttpStatus.CREATED_201);
         }
     }
+
+    public static void getAllTransactions(Context ctx){
+        User u = ctx.sessionAttribute("user");
+        if(u.isEmployee()){
+            TransactionService.getAllTransactions();
+        }else{
+            ctx.status(HttpStatus.FORBIDDEN_403);
+        }
+    }
 }

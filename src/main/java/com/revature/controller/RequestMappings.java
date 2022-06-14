@@ -19,7 +19,7 @@ public class RequestMappings {
            AuthenticationController.createUser(ctx);
         });
 
-        app.post("/api/v1/account/apply", ctx -> {
+        app.post("/api/v1/account", ctx -> {
             if(AuthenticationController.verifyUser(ctx)){
                 AccountController.createAccount(ctx);
             }else{
@@ -27,7 +27,7 @@ public class RequestMappings {
             }
         });
 
-        app.post("/api/v1/transaction", ctx -> {
+        app.post("/api/v1/transactions", ctx -> {
            if(AuthenticationController.verifyUser(ctx)){
                TransactionController.postTransaction(ctx);
            }else{
@@ -45,10 +45,18 @@ public class RequestMappings {
 
         app.get("/api/v1/transactions", ctx -> {
            if(AuthenticationController.verifyUser(ctx)){
-               TransactionController.getTransactions(ctx);
+               TransactionController.getAllTransactions(ctx);
            }else{
                ctx.status(HttpStatus.UNAUTHORIZED_401);
            }
+        });
+
+        app.get("/api/v1/accounts/{id}", ctx -> {
+            if(AuthenticationController.verifyUser(ctx)){
+                AccountController.getAccountsById(ctx);
+            }else{
+                ctx.status(HttpStatus.UNAUTHORIZED_401);
+            }
         });
 
 
