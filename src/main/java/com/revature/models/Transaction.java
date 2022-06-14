@@ -13,7 +13,7 @@ public class Transaction {
 
     /**
      * To be used for NEW ACCOUNTS ONLY or for Authentication purposes.
-     * transactionID is set to -1 and,
+     * transactionID is set to -1,
      * transactionStatus is set to PENDING.
      * @param transactionType
      * @param originAccount

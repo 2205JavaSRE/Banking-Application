@@ -9,8 +9,26 @@ public class Account {
     private boolean approved;
 
     /**
-     * To be used for NEW ACCOUNTS ONLY or for Authentication purposes.
-     * accountID is set to -1 and,
+     * To be used for NEW ACCOUNTS ONLY or for authentication purposes.
+     * accountID is set to -1,
+     * secondaryOwnerID is set to -1,
+     * approve is set to false.
+     * @param primaryOwnerID
+     * @param accountType
+     * @param balance
+     */
+    public Account(int primaryOwnerID, AccountType accountType, double balance) {
+        this.accountID = -1;
+        this.primaryOwnerID = primaryOwnerID;
+        this.secondaryOwnerID = -1;
+        this.accountType = accountType;
+        this.balance = balance;
+        this.approved = false;
+    }
+
+    /**
+     * To be used for NEW JOINT ACCOUNTS ONLY or for Authentication purposes.
+     * accountID is set to -1
      * approved is set to false.
      * @param primaryOwnerID
      * @param secondaryOwnerID
