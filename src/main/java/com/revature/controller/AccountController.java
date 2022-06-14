@@ -13,5 +13,14 @@ public class AccountController {
         }
     }
 
+    public static void getAccounts(Context ctx){
+        User u = ctx.sessionAttribute("user");
+        if(u.getIsEmployee()){
+            ctx.json(AccountService.getAllAccounts());
+        }else{
+            ctx.json(AccountService.getAccountsByUsername(u.getUsername()));
+        }
+    }
+
 
 }
