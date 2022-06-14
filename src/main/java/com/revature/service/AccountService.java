@@ -10,7 +10,6 @@ public class AccountService {
 	private static final AccountDao aDao = new AccountDao();
 	
 	public static boolean createAccount(Account a, User u) {
-		//TODO not done
 		if (a.getBalance() < 0 || !(a.getAccountType() instanceof AccountType)) {
 			return false;
 		} else {
