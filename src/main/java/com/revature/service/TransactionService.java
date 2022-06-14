@@ -10,6 +10,8 @@ public class TransactionService {
 	private static final AccountDao aDao = new AccountDao();
 	private static final TransactionDao tDao = new TransactionDao();
 	
+	private TransactionService() {}
+	
 	public static boolean postTransaction(Transaction t, User u) {
 		boolean bool = false;
 		Account a = aDao.getAccountByAccountID(t.getOriginAccount());

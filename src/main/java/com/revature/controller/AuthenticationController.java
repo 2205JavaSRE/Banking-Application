@@ -7,6 +7,9 @@ import io.javalin.http.Context;
 import org.eclipse.jetty.http.HttpStatus;
 
 public class AuthenticationController {
+	
+	private AuthenticationController() {}
+	
     public static void authenticate(Context ctx){
         User login = ctx.bodyAsClass(User.class);
         boolean access = AuthenticationService.authenticate(login.getUsername(), login.getPassword());

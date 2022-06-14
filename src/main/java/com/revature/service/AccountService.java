@@ -12,12 +12,14 @@ public class AccountService {
 	private static final AccountDao aDao = new AccountDao();
 	private static final UserDao uDao = new UserDao();
 	
+	private AccountService() {}
+	
 	public static boolean createAccount(Account a, User u) {
 		if (a.getBalance() < 0 || !(a.getAccountType() instanceof AccountType)) {
 			return false;
 		} else {
 			aDao.insertAccount(a, u);
-			if (a.getJointOwnerID() != -1 && uDao.existsById()) {
+			if (a.getJointOwnerID() != -1 && uDao.existsByUserID(a.getJointOwnerID())) {
 				aDao.updateAccount(a);
 			}
 			return true;

@@ -6,6 +6,9 @@ import io.javalin.http.Context;
 import org.eclipse.jetty.http.HttpStatus;
 
 public class TransactionController {
+	
+	private TransactionController() {}
+	
     public static void postTransaction(Context ctx){
         try {
             Transaction t = ctx.bodyAsClass(Transaction.class);

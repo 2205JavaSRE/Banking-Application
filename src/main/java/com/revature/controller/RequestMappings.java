@@ -5,6 +5,9 @@ import io.javalin.Javalin;
 import org.eclipse.jetty.http.HttpStatus;
 
 public class RequestMappings {
+	
+	private RequestMappings() {}
+	
     public static void configureRoutes(Javalin app){
         //General login paths
         app.post("/api/v1/login", AuthenticationController::authenticate);
@@ -72,9 +75,6 @@ public class RequestMappings {
                 ctx.status(HttpStatus.UNAUTHORIZED_401);
             }
         });
-
-
-
     }
 
 }

@@ -7,6 +7,8 @@ public class UserService {
 	
 	private static final UserDao uDao = new UserDao();
 	
+	private UserService() {}
+	
 	public static boolean createUser(User u) {
 		if (uDao.existsByName(u.getUsername())) {
 			return false;
