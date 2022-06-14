@@ -8,6 +8,7 @@ public class AccountController {
     public static void createAccount(Context ctx){
         User u = ctx.sessionAttribute("user");
         Account a = ctx.bodyAsClass(Account.class);
+        //TODO put user id into account object (or in service layer)?
         if(!AccountService.createAccount(a, u)){
             ctx.status(HttpStatus.BAD_REQUEST_400);
         }else{
