@@ -3,7 +3,7 @@ package com.revature.models;
 public class Account {
     private int accountID;
     private int primaryOwnerID;
-    private int secondaryOwnerID;
+    private int jointOwnerID;
     private AccountType accountType;
     private double balance;
     private boolean approved;
@@ -23,7 +23,7 @@ public class Account {
     public Account(int primaryOwnerID, AccountType accountType, double balance) {
         this.accountID = -1;
         this.primaryOwnerID = primaryOwnerID;
-        this.secondaryOwnerID = -1;
+        this.jointOwnerID = -1;
         this.accountType = accountType;
         this.balance = balance;
         this.approved = false;
@@ -41,7 +41,7 @@ public class Account {
     public Account(int primaryOwnerID, int secondaryOwnerID, AccountType accountType, double balance) {
         this.accountID = -1;
         this.primaryOwnerID = primaryOwnerID;
-        this.secondaryOwnerID = secondaryOwnerID;
+        this.jointOwnerID = secondaryOwnerID;
         this.accountType = accountType;
         this.balance = balance;
         this.approved = false;
@@ -51,15 +51,15 @@ public class Account {
      * To be used for EXISTING ACCOUNTS ONLY.
      * @param accountID
      * @param primaryOwnerID
-     * @param secondaryOwnerID
+     * @param jointOwnerID
      * @param accountType
      * @param balance
      * @param approved
      */
-    public Account(int accountID, int primaryOwnerID, int secondaryOwnerID, AccountType accountType, double balance, boolean approved) {
+    public Account(int accountID, int primaryOwnerID, int jointOwnerID, AccountType accountType, double balance, boolean approved) {
         this.accountID = accountID;
         this.primaryOwnerID = primaryOwnerID;
-        this.secondaryOwnerID = secondaryOwnerID;
+        this.jointOwnerID = jointOwnerID;
         this.accountType = accountType;
         this.balance = balance;
         this.approved = approved;
@@ -81,12 +81,12 @@ public class Account {
         this.primaryOwnerID = primaryOwnerID;
     }
 
-    public int getSecondaryOwnerID() {
-        return secondaryOwnerID;
+    public int getJointOwnerID() {
+        return jointOwnerID;
     }
 
-    public void setSecondaryOwnerID(int secondaryOwnerID) {
-        this.secondaryOwnerID = secondaryOwnerID;
+    public void setJointOwnerID(int jointOwnerID) {
+        this.jointOwnerID = jointOwnerID;
     }
 
     public AccountType getAccountType() {
@@ -118,7 +118,7 @@ public class Account {
         return "Account{" +
                 "accountID=" + accountID +
                 ", primaryOwnerID=" + primaryOwnerID +
-                ", secondaryOwnerID=" + secondaryOwnerID +
+                ", secondaryOwnerID=" + jointOwnerID +
                 ", accountType=" + accountType +
                 ", balance=" + balance +
                 ", approved=" + approved +
