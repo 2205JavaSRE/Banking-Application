@@ -9,24 +9,22 @@ public class TransactionService {
 
 	private static final TransactionDao tDao = new TransactionDao();
 	public static boolean postTransaction(Transaction t, User u) {
-		// TODO Auto-generated method stub
+		boolean bool = false;
 		Account a = aDao.getAccountByAccountID(t.getOriginAccount());
 		if(a.getPrimaryOwnerID() == u.getUserID() || a.getJointOwnerID() == u.getUserID()){
 			switch(t.getTransactionType()){
 				case DEPOSIT:
-					return deposit(t, a);
+					bool = deposit(t, a);
 					break;
 				case WITHDRAWAL:
-					return withdrawal(t, a);
+					bool = withdrawal(t, a);
 					break;
 				case TRANSFER:
-					return initTransfer(t, a);
+					bool = initTransfer(t, a);
 					break;
-				default:
-					return false;
 			}
 		}
-		return false;
+		return bool;
 	}
 
 	private static boolean deposit(Transaction t, Account a){
