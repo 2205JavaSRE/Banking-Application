@@ -15,7 +15,7 @@ public class AccountService {
 	private AccountService() {}
 	
 	public static boolean createAccount(Account a, User u) {
-		if (a.getBalance() < 0 || !(a.getAccountType() instanceof AccountType)) {
+		if (a.getBalance() < 0) {
 			return false;
 		} else {
 			aDao.insertAccount(a, u);
