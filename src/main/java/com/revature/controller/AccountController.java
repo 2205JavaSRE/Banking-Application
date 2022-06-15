@@ -3,7 +3,7 @@ import com.revature.models.*;
 import com.revature.service.AccountService;
 import io.javalin.http.Context;
 import org.eclipse.jetty.http.HttpStatus;
-
+import java.util.*;
 public class AccountController {
     public static void createAccount(Context ctx){
         User u = ctx.sessionAttribute("user");
@@ -37,7 +37,14 @@ public class AccountController {
         if(u.isEmployee()){
             try {
                 int id = Integer.parseInt(ctx.pathParam("id"));
-                ctx.json(AccountService.getAccountsByUserId(id));
+                List<Account> aList = AccountService.getAccountsByUserId(id);
+                //TODO reevaluate this code
+                if(aList.isEmpty()){
+                    ctx.status(HttpStatus.NOT_FOUND_404);
+                }else{
+                    ctx.json(aList);
+                }
+
             }catch(Exception e){
                 ctx.status(HttpStatus.BAD_REQUEST_400);
             }

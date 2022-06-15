@@ -60,7 +60,7 @@ public class RequestMappings {
             }
         });
 
-        app.patch("/api/v1/accounts/update", ctx -> {
+        app.patch("/api/v1/accounts", ctx -> {
         	 if(AuthenticationController.verifyUser(ctx)){
                  AccountController.updateAccountStatus(ctx);
              }else{
