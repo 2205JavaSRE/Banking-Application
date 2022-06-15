@@ -35,8 +35,9 @@ public class AuthenticationController {
     public static void createUser(Context ctx) {
     	try {
     		User u = ctx.bodyAsClass(User.class);
-        	
+            System.out.println(u);
         	if (!UserService.createUser(u)) {
+                System.out.println("Went wrong in if statement");
         		ctx.status(HttpStatus.BAD_REQUEST_400);
         	}else{
                 ctx.status(HttpStatus.CREATED_201);

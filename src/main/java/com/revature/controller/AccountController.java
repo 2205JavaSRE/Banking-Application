@@ -7,16 +7,18 @@ import org.eclipse.jetty.http.HttpStatus;
 public class AccountController {
     public static void createAccount(Context ctx){
         User u = ctx.sessionAttribute("user");
-        
+        System.out.println(u);
         try {
         	Account a = ctx.bodyAsClass(Account.class);
-        	
+            System.out.println(a);
         	if(!AccountService.createAccount(a, u)){
+                System.out.println("inside the if!");
                 ctx.status(HttpStatus.BAD_REQUEST_400);
             }else{
                 ctx.status(HttpStatus.CREATED_201);
             }
         } catch (Exception e) {
+            e.printStackTrace();
 			ctx.status(HttpStatus.BAD_REQUEST_400);
 		}  
     }
