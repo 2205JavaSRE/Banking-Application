@@ -32,7 +32,8 @@ public class TransactionController {
     }
 
 	public static void updateTranfer(Context ctx) {
-		TransactionService.updateTransfer(ctx.bodyAsClass(Transaction.class), ctx.sessionAttribute("user"));
-		
+		if(!TransactionService.updateTransfer(ctx.bodyAsClass(Transaction.class), ctx.sessionAttribute("user"))) {
+			ctx.status(HttpStatus.FORBIDDEN_403);
+		}
 	}
 }

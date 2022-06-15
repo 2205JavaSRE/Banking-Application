@@ -80,9 +80,9 @@ public class TransactionService {
 	}
 
 	public static boolean updateTransfer(Transaction t, User u){
-		Account a = aDao.getAccountByAccountID(t.getDestinationAccount());
+		Transaction real = tDao.getTransactionByID(t.getTransactionID());
+		Account a = aDao.getAccountByAccountID(real.getDestinationAccount());
 		if(t.getTransactionStatus() != TransactionStatus.PENDING && (a.getPrimaryOwnerID() == u.getUserID() || a.getJointOwnerID() == u.getUserID())){
-			Transaction real = tDao.getTransactionByID(t.getTransactionID());
 			real.setTransactionStatus(t.getTransactionStatus());
 			if(real.getTransactionStatus() == TransactionStatus.APPROVED){
 				a.setBalance(a.getBalance() + real.getTransactionAmount());

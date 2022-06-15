@@ -33,8 +33,7 @@ public class Transaction {
                        @JsonProperty("originAccount") int originAccount,
                        @JsonProperty("destinationAccount") int destinationAccount,
                        @JsonProperty("transactionAmount") double transactionAmount,
-                       @JsonProperty("timestamp") Timestamp timestamp,
-                       @JsonProperty("transactionStatus")TransactionStatus transactionStatus) {
+                       @JsonProperty("timestamp") Timestamp timestamp) {
         this.transactionID = -1;
         this.transactionType = transactionType;
         this.originAccount = originAccount;
