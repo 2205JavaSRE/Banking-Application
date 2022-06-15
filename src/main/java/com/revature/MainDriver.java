@@ -1,7 +1,11 @@
 package com.revature;
-
+import com.revature.controller.RequestMappings;
 import com.revature.dao.*;
 import com.revature.models.*;
+import com.revature.util.Monitor;
+import io.javalin.Javalin;
+import io.javalin.plugin.metrics.MicrometerPlugin;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -37,5 +41,14 @@ public class MainDriver {
         tDao.updateTransactionStatus(transaction2);*/
 /*        ArrayList<User> users = uDao.getAllUsers();
         System.out.println(users);*/
+
+        Monitor monitor = new Monitor();
+
+        Javalin myApp = Javalin.create(
+                config -> {
+                    config.registerPlugin(new MicrometerPlugin(monitor.getRegistry()));
+                }
+        ).start(6);
+        RequestMappings.configureRoutes(myApp, monitor);
     }
 }

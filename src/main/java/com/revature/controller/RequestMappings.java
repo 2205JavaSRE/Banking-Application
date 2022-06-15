@@ -8,7 +8,7 @@ public class RequestMappings {
 	
 	private RequestMappings() {}
 	
-    public static void configureRoutes(Javalin app){
+    public static void configureRoutes(Javalin app, Monitor monitor){
         //General login paths
         app.post("/api/v1/login", AuthenticationController::authenticate);
 
@@ -75,6 +75,17 @@ public class RequestMappings {
                 ctx.status(HttpStatus.UNAUTHORIZED_401);
             }
         });
+
+        app.get("/metrics", ctx -> {
+            ctx.result(monitor.getRegistry().scrape());
+        });
+
+        app.get("/coffee", ctx -> {
+            ctx.result("I'm a teapot!");
+            ctx.status(HttpStatus.IM_A_TEAPOT_418);
+        });
     }
+
+
 
 }
