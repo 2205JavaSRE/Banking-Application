@@ -41,7 +41,7 @@ public class MainDriver {
         tDao.updateTransactionStatus(transaction2);*/
 /*        ArrayList<User> users = uDao.getAllUsers();
         System.out.println(users);*/
-
+/*        System.out.println(aDao.getAccountsByApproval(false));*/
         Monitor monitor = new Monitor();
 
         Javalin myApp = Javalin.create(

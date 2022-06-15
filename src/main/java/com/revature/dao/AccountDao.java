@@ -100,17 +100,18 @@ public class AccountDao implements AccountDaoInterface {
             ps.setInt(1,ownerID);
             ps.setInt(2, ownerID);
             ResultSet rs = ps.executeQuery();
-
-            if(rs.next()){
-                Account account = new Account(
-                        rs.getInt("account_id"),
-                        rs.getInt("primary_owner_id"),
-                        rs.getInt("joint_owner_id"),
-                        AccountType.valueOf(rs.getString("account_type")),
-                        rs.getDouble("balance"),
-                        rs.getBoolean("approved")
-                );
-                accounts.add(account);
+            while(rs.next()) {
+                if (rs.next()) {
+                    Account account = new Account(
+                            rs.getInt("account_id"),
+                            rs.getInt("primary_owner_id"),
+                            rs.getInt("joint_owner_id"),
+                            AccountType.valueOf(rs.getString("account_type")),
+                            rs.getDouble("balance"),
+                            rs.getBoolean("approved")
+                    );
+                    accounts.add(account);
+                }
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -131,17 +132,18 @@ public class AccountDao implements AccountDaoInterface {
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setBoolean(1,approvalStatus);
             ResultSet rs = ps.executeQuery();
-
-            if(rs.next()){
-                Account account = new Account(
-                        rs.getInt("account_id"),
-                        rs.getInt("primary_owner_id"),
-                        rs.getInt("joint_owner_id"),
-                        AccountType.valueOf(rs.getString("account_type")),
-                        rs.getDouble("balance"),
-                        rs.getBoolean("approved")
-                );
-                accounts.add(account);
+            while(rs.next()) {
+                if (rs.next()) {
+                    Account account = new Account(
+                            rs.getInt("account_id"),
+                            rs.getInt("primary_owner_id"),
+                            rs.getInt("joint_owner_id"),
+                            AccountType.valueOf(rs.getString("account_type")),
+                            rs.getDouble("balance"),
+                            rs.getBoolean("approved")
+                    );
+                    accounts.add(account);
+                }
             }
         } catch (SQLException e){
             e.printStackTrace();
