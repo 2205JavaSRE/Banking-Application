@@ -18,9 +18,11 @@ public class AccountService {
 		if (a.getBalance() < 0) {
 			return false;
 		} else {
-			aDao.insertAccount(a, u);
 			if (a.getJointOwnerID() != -1 && uDao.existsByUserID(a.getJointOwnerID())) {
-				aDao.updateAccount(a);
+				aDao.insertAccount(a, u);
+			} else {
+				a.setJointOwnerID(a.getPrimaryOwnerID());
+				aDao.insertAccount(a, u);
 			}
 			return true;
 		}
@@ -34,7 +36,6 @@ public class AccountService {
 		return aDao.getAccountsByOwnerID(userID);
 	}
 	
-	//TODO May change to enum or add delete in dao
 	public static void updateAccountStatus(Account a) {
 		Account target = aDao.getAccountByAccountID(a.getAccountID());
 		target.setApproved(a.isApproved());

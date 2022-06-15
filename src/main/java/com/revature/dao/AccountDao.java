@@ -44,7 +44,6 @@ public class AccountDao implements AccountDaoInterface {
     public void updateAccount(Account account) {
         String sql = "update accounts set joint_owner_id = ?, balance = ?, approved = ? where account_id = ?";
         Connection connection = ConnectionFactory.getConnection();
-
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setInt(1,account.getJointOwnerID());
             ps.setDouble(2, account.getBalance());

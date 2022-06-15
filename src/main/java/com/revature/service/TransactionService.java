@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.revature.dao.AccountDao;
@@ -15,7 +16,8 @@ public class TransactionService {
 	public static boolean postTransaction(Transaction t, User u) {
 		boolean bool = false;
 		Account a = aDao.getAccountByAccountID(t.getOriginAccount());
-		if(a.getPrimaryOwnerID() == u.getUserID() || a.getJointOwnerID() == u.getUserID()){
+	
+		if((a.getPrimaryOwnerID() == u.getUserID() || a.getJointOwnerID() == u.getUserID()) && a.isApproved()){
 			switch(t.getTransactionType()){
 				case DEPOSIT:
 					bool = deposit(t, a);
@@ -37,6 +39,7 @@ public class TransactionService {
 			t.setTransactionStatus(TransactionStatus.APPROVED);
 			a.setBalance(a.getBalance() + t.getTransactionAmount());
 			aDao.updateAccount(a);
+			t.setTimestamp(new Timestamp(System.currentTimeMillis()));
 			tDao.insertTransaction(t);
 			return true;
 		}else{
@@ -51,6 +54,7 @@ public class TransactionService {
 			t.setTransactionStatus(TransactionStatus.APPROVED);
 			a.setBalance(a.getBalance() - t.getTransactionAmount());
 			aDao.updateAccount(a);
+			t.setTimestamp(new Timestamp(System.currentTimeMillis()));
 			tDao.insertTransaction(t);
 			return true;
 		}else{
@@ -59,10 +63,15 @@ public class TransactionService {
 	}
 
 	private static boolean initTransfer(Transaction t, Account a){
-		if(t.getTransactionAmount() >= 0 && t.getTransactionAmount() <= a.getBalance() && aDao.getAccountByAccountID(t.getDestinationAccount()) != null){
+		Account destAccount = aDao.getAccountByAccountID(t.getDestinationAccount());
+		if(destAccount != null
+				&& destAccount.isApproved()
+				&& t.getTransactionAmount() >= 0
+				&& t.getTransactionAmount() <= a.getBalance()){
 			t.setTransactionStatus(TransactionStatus.PENDING);
 			a.setBalance(a.getBalance() - t.getTransactionAmount());
 			aDao.updateAccount(a);
+			t.setTimestamp(new Timestamp(System.currentTimeMillis()));
 			tDao.insertTransaction(t);
 			return true;
 		}else{

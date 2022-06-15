@@ -26,10 +26,11 @@ public class Account {
     @JsonCreator
     public Account(@JsonProperty("primaryOwnerID") int primaryOwnerID,
                    @JsonProperty("accountType") AccountType accountType,
+                   @JsonProperty("jointOwnerID") int jointOwnerID,
                    @JsonProperty("balance") double balance) {
         this.accountID = -1;
         this.primaryOwnerID = primaryOwnerID;
-        this.jointOwnerID = -1;
+        this.jointOwnerID = jointOwnerID;
         this.accountType = accountType;
         this.balance = balance;
         this.approved = false;

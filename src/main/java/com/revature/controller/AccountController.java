@@ -10,9 +10,7 @@ public class AccountController {
         System.out.println(u);
         try {
         	Account a = ctx.bodyAsClass(Account.class);
-            System.out.println(a);
         	if(!AccountService.createAccount(a, u)){
-                System.out.println("inside the if!");
                 ctx.status(HttpStatus.BAD_REQUEST_400);
             }else{
                 ctx.status(HttpStatus.CREATED_201);
