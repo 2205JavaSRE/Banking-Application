@@ -20,15 +20,16 @@ public class AccountDao implements AccountDaoInterface {
     @Override
     public void insertAccount(Account account, User user) {
         //int accountID, int primaryOwnerID, int secondaryOwnerID, AccountType accountType, double balance, boolean approved
-        String sql = "insert into accounts (primary_owner_id, account_type, balance, approved) values " +
-                "((select user_id from users where username = ?),?::a_type,?,?)";
+        String sql = "insert into accounts (primary_owner_id, joint_owner_id, account_type, balance, approved) values " +
+                "((select user_id from users where username = ?),?,?::a_type,?,?)";
         Connection connection = ConnectionFactory.getConnection();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, user.getUsername());
-            ps.setString(2, account.getAccountType().name());
-            ps.setDouble(3, account.getBalance());
-            ps.setBoolean(4, false);
+            ps.setInt(2, account.getJointOwnerID());
+            ps.setString(3, account.getAccountType().name());
+            ps.setDouble(4, account.getBalance());
+            ps.setBoolean(5, false);
             ps.execute();
         } catch (SQLException e){
             e.printStackTrace();
@@ -51,7 +52,7 @@ public class AccountDao implements AccountDaoInterface {
             ps.setInt(4, account.getAccountID());
             ps.execute();
         } catch (SQLException e){
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
