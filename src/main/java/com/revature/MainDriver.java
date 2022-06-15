@@ -48,7 +48,7 @@ public class MainDriver {
                 config -> {
                     config.registerPlugin(new MicrometerPlugin(monitor.getRegistry()));
                 }
-        ).start(6);
+        ).start(7400);
         RequestMappings.configureRoutes(myApp, monitor);
     }
 }
