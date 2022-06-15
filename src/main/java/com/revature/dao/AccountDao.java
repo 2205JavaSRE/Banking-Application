@@ -101,7 +101,6 @@ public class AccountDao implements AccountDaoInterface {
             ps.setInt(2, ownerID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                if (rs.next()) {
                     Account account = new Account(
                             rs.getInt("account_id"),
                             rs.getInt("primary_owner_id"),
@@ -111,7 +110,6 @@ public class AccountDao implements AccountDaoInterface {
                             rs.getBoolean("approved")
                     );
                     accounts.add(account);
-                }
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -133,17 +131,15 @@ public class AccountDao implements AccountDaoInterface {
             ps.setBoolean(1,approvalStatus);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                if (rs.next()) {
-                    Account account = new Account(
-                            rs.getInt("account_id"),
-                            rs.getInt("primary_owner_id"),
-                            rs.getInt("joint_owner_id"),
-                            AccountType.valueOf(rs.getString("account_type")),
-                            rs.getDouble("balance"),
-                            rs.getBoolean("approved")
-                    );
-                    accounts.add(account);
-                }
+                Account account = new Account(
+                        rs.getInt("account_id"),
+                        rs.getInt("primary_owner_id"),
+                        rs.getInt("joint_owner_id"),
+                        AccountType.valueOf(rs.getString("account_type")),
+                        rs.getDouble("balance"),
+                        rs.getBoolean("approved")
+                );
+                accounts.add(account);
             }
         } catch (SQLException e){
             e.printStackTrace();
