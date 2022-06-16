@@ -10,11 +10,13 @@ public class RequestMappings {
 	
     public static void configureRoutes(Javalin app, Monitor monitor){
         //General login paths
-        app.post("/api/v1/login", AuthenticationController::authenticate);
+        app.post("/api/v1/login", monitor.getRequestLatency().record(() -> AuthenticationController::authenticate));
 
         app.post("/api/v1/logout", ctx -> {
-            ctx.consumeSessionAttribute("user");
-            ctx.status(HttpStatus.OK_200);
+            monitor.getRequestLatency().record(() -> {
+                ctx.consumeSessionAttribute("user");
+                ctx.status(HttpStatus.OK_200);
+            });
         });
         //Customer post requests
         app.post("/api/v1/register", AuthenticationController::createUser);
