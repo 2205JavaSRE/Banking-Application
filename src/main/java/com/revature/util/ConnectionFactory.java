@@ -20,7 +20,7 @@ public class ConnectionFactory {
             connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
-            MainDriver.monitor.incrementCounter();
+            MainDriver.monitor.incrementSqlCounter();
         }
 
         return connection;

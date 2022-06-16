@@ -23,6 +23,8 @@ public class Monitor {
             .tag("purpose", "testing")
             .register(registry);
 
+
+
     public Timer requestLatancy = Timer
             .builder("Request Latency")
             .description("Records the internal response time to a request")
@@ -43,7 +45,7 @@ public class Monitor {
         return requestLatancy;
     }
 
-    public void incrementCounter(){
+    public void incrementSqlCounter(){
         sqlErrors.increment();
     }
 
