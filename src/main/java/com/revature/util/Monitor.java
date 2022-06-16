@@ -17,9 +17,9 @@ import java.io.File;
 public class Monitor {
     PrometheusMeterRegistry registry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
 
-    public Counter activeSessions = Counter
-            .builder("Number of Logins")
-            .description("to keep track of how many users have logged in")
+    public Counter sqlErrors = Counter
+            .builder("Number of SQL errors")
+            .description("to keep track of how many times SQL fails us")
             .tag("purpose", "testing")
             .register(registry);
 
@@ -44,7 +44,7 @@ public class Monitor {
     }
 
     public void incrementCounter(){
-        activeSessions.increment();
+        sqlErrors.increment();
     }
 
 

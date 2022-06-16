@@ -10,8 +10,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class MainDriver {
+    public static Monitor monitor = new Monitor();
     public static void main(String[] args){
-        Monitor monitor = new Monitor();
+
 
         Javalin myApp = Javalin.create(
                 config -> {
