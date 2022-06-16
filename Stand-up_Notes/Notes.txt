@@ -28,4 +28,9 @@ SLO:
 Latency%
 500 Error rates% successful status vs total status
 
+SLI:
+-request latency
+-error rate
+-availability
+-request count (matric?)
 
