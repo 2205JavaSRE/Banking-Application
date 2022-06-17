@@ -1,10 +1,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: micrometer-monitor
-  namespace: ben-space
+  name: banking-api-monitor
+  namespace: ooido-space
   labels:
-    app: micrometer-demo
+    app: banking-api
     prometheus: devops
 spec:
   endpoints:
@@ -13,7 +13,7 @@ spec:
     path: /metrics
   namespaceSelector:
     matchNames:
-    - ben-space
+    - ooido-space
   selector:
     matchLabels:
-      app: micrometer-demo
+      app: banking-api

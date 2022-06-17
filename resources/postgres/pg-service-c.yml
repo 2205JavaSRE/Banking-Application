@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: postgres
 spec: 
-  #type: ClusterIP # If you don't provide a type, then it defaults to ClusterIP
+  type: ClusterIP
   selector: 
     app: postgres
   ports: 
