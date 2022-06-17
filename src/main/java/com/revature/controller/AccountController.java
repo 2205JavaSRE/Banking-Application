@@ -6,7 +6,7 @@ import org.eclipse.jetty.http.HttpStatus;
 import java.util.*;
 public class AccountController {
     public static void createAccount(Context ctx){
-        User u = ctx.sessionAttribute("user");
+        User u = ctx.cookieStore("user");
         System.out.println(u);
         try {
         	Account a = ctx.bodyAsClass(Account.class);
@@ -22,7 +22,7 @@ public class AccountController {
     }
 
     public static void getAccounts(Context ctx){
-        User u = ctx.sessionAttribute("user");
+        User u = ctx.cookieStore("user");
         if(u.isEmployee()){
             ctx.json(AccountService.getAllPendingAccounts());
         }else{
@@ -31,7 +31,7 @@ public class AccountController {
     }
 
     public static void getAccountsById(Context ctx){
-        User u = ctx.sessionAttribute("user");
+        User u = ctx.cookieStore("user");
         if(u.isEmployee()){
             try {
                 int id = Integer.parseInt(ctx.pathParam("id"));
@@ -52,12 +52,17 @@ public class AccountController {
     }
 
 	public static void updateAccountStatus(Context ctx) {
-		try {
-			Account a = ctx.bodyAsClass(Account.class);
-			AccountService.updateAccountStatus(a);
-		} catch (Exception e) {
-			ctx.status(HttpStatus.BAD_REQUEST_400);
-		}
+        User u = ctx.cookieStore("user");
+        if(u.isEmployee()) {
+            try {
+                Account a = ctx.bodyAsClass(Account.class);
+                AccountService.updateAccountStatus(a);
+            } catch (Exception e) {
+                ctx.status(HttpStatus.BAD_REQUEST_400);
+            }
+        }else{
+            ctx.status(HttpStatus.FORBIDDEN_403);
+        }
 	}
 	
 	

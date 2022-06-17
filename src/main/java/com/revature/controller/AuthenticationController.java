@@ -16,7 +16,7 @@ public class AuthenticationController {
         if(access){
             ctx.status(HttpStatus.OK_200);
             User u = UserService.getUser(login.getUsername());
-            ctx.sessionAttribute("user", u);
+            ctx.cookieStore("user", u);
         }else {
             ctx.status(HttpStatus.UNAUTHORIZED_401);
         }
@@ -24,7 +24,7 @@ public class AuthenticationController {
 
 
     public static boolean verifyUser(Context ctx){
-        User u = ctx.sessionAttribute("user");
+        User u = ctx.cookieStore("user");
         if(u != null){
             return true;
         }else{

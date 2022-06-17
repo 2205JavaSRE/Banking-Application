@@ -13,7 +13,7 @@ public class RequestMappings {
         app.post("/api/v1/login", AuthenticationController::authenticate);
 
         app.post("/api/v1/logout", ctx -> {
-            ctx.consumeSessionAttribute("user");
+            ctx.clearCookieStore();
             ctx.status(HttpStatus.OK_200);
         });
         //Customer post requests
