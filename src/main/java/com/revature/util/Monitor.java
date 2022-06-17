@@ -23,7 +23,11 @@ public class Monitor {
             .tag("purpose", "testing")
             .register(registry);
 
-
+    public Counter internalServerErrors = Counter
+            .builder("Counts all internal server errors")
+            .description("Increments whenever a 500 error code is returned")
+            .tag("purpose", "testing")
+            .register(registry);
 
     public Timer requestLatancy = Timer
             .builder("Request Latency")
@@ -47,6 +51,10 @@ public class Monitor {
 
     public void incrementSqlCounter(){
         sqlErrors.increment();
+    }
+
+    public void incrementServorError(){
+        internalServerErrors.increment();
     }
 
 

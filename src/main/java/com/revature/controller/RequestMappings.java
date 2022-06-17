@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import com.revature.models.User;
 import com.revature.util.Monitor;
 import io.javalin.Javalin;
 import org.eclipse.jetty.http.HttpStatus;
@@ -89,6 +90,13 @@ public class RequestMappings {
         app.get("/coffee", ctx -> {
             ctx.result("I'm a teapot!");
             ctx.status(HttpStatus.IM_A_TEAPOT_418);
+        });
+
+        app.after(ctx -> {
+            User u = ctx.sessionAttribute("user");
+            if(ctx.status() == 500){
+                monitor.incrementServorError();
+            }
         });
     }
 
