@@ -7,7 +7,7 @@ Date Approved:
 Approved by: Benjamin Arayathel
 
 SLIs:
-	All averages are over the entire uptime.
+	All averages are over the last week.
 	API: 
 		HTTP Request Latency
 			Requests taking less than 3 seconds / all requests
@@ -17,25 +17,28 @@ SLIs:
 			Requests taking less than 0.5 seconds / all requests
 			
 			ex:
+            Maybe take account of outliers in the calculation (logout).
+
 
 		Error rate
 			All HTTP5XX codes / All Successful HTTP requests
 			
 			ex:
-			sum(rate(http_requests_total{host="app", status~"5.."}[28d]))
+			sum(rate(http_requests_total{host="app", status~"5.."}[7d]))
 			/
-			sum(rate(http_requests_total{host="app", status!~"5.."}[28d]))
+			sum(rate(http_requests_total{host="app", status!~"5.."}[7d]))
 			
 		Availability
 			!HTTP5XX codes / all http requests
 			
 			ex:
-			sum(rate(http_requests_total{host="app", status!~"5.."}[28d]))
+			sum(rate(http_requests_total{host="app", status!~"5.."}[7d]))
 			/
-			sum(rate(http_requests_total{host="app"}[28d])
+			sum(rate(http_requests_total{host="app"}[7d])
 		
 		Throughput:
 			Test?
+
 		Correctness:
 			Test?
 		
@@ -49,9 +52,10 @@ SLIs:
 			or
 			All failed database connections / All database connections
 
+    Maybe custom indicator if database stuff is not unique.
 
-4 Week Window for Each SLO
-OR
+
+
 1 Week Window for Each SLO
 SLOs:
 	API:
@@ -80,9 +84,10 @@ SLOs:
 Rationale:
 	Measure these things and see if our SLIs and SLOs make sense, then use this measurement to justify.
 	As we do not have the ability to fully load test our service, our targets are based on our assumptions and measurements.
+	All averages are over the last week, because we want to improve performance rapidly within an agile development methodology.
 	
 Error Budget:
-	
+	Every SLO has its own.
 	100%-99%: ex 5000-4950
 	100%-99%: ex 5000-4850
 	
@@ -104,6 +109,7 @@ Error Budget Policy:
 Dashboard:
 	API:
 		Latency
+		Error Rate
 		Availability
 		Error Budget for each
 	Database:
