@@ -9,5 +9,5 @@ gpgcheck=1
 repo_gpgcheck=0
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
-yum install -y kubectl
+yum install -y kubectl-1.21.1
 
