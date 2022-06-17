@@ -14,7 +14,7 @@ metadata:
 #ReadWriteOnce means that only a single application can read and write to this storage
 spec:
  accessModes:
-   - ReadWriteMany
+   - ReadWriteOnce
  resources:
    requests:
       storage: 200Mi
