@@ -10,17 +10,21 @@ spec:
       image: ooido/pg-pod
       imagePullPolicy: Always
       ports: 
-        - containerPort: 5432
-      envFrom:
-        - configMapRef:
-            name: postgres-config
+        - containerPort: 5432 
+      env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "TNNFEtnnfe"
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
       volumeMounts: 
         - mountPath: /var/lib/postgresql/data
           name: db-data
   volumes: 
     - name: db-data #I'm attaching the volume in the container, labelled as "db-data" to an external volume 
       persistentVolumeClaim:
-        claimName: postgres-pvc #I'm storing it somewhere that will get destroyed, only good for temporary data.
+        claimName: pg-pvc #I'm storing it somewhere that will get destroyed, only good for temporary data.
                   # If the pod is destroyed, all the data is destroyed. 
                   # For you guys, you should be storing it in AWS EBS
       #    env:
@@ -34,6 +38,15 @@ spec:
       #          secretKeyRef:
       #            name: mysecret
       #            key: password
+      #      - name: POSTGRES_DB
+      #        valueFrom:
+      #          secretKeyRef:
+      #            name: mysecret
+      #            key: url
+      #
+      #
+      #
+      #
 # Create a kustomization.yaml file with SecretGenerator
 #  $ cat <<EOF >./kustomization.yaml
 #secretGenerator:
@@ -42,3 +55,6 @@ spec:
 #      - username=admin
 #      - password=secret
 #  EOF
+
+
+
