@@ -10,11 +10,11 @@ spec: # Specifications for the Deployment!
   replicas: 3
   selector: 
     matchLabels: 
-      app: banking-api # has to match the template labels app.
+      app: banking-api-app # has to match the template labels app.
   template: 
     metadata: 
       labels: 
-        app: banking-api
+        app: banking-api-app
     spec:
       containers: 
         - name: banking-api-pod

@@ -8,7 +8,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: banking-api
+    app: banking-api-app
   ports:
     - port: 80
       targetPort: 7400
