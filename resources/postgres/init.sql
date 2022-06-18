@@ -60,7 +60,7 @@ COMMENT ON DATABASE postgres IS 'default administrative connection database';
 -- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-CREATE SCHEMA public;
+--CREATE SCHEMA public;
 
 
 ALTER SCHEMA public OWNER TO postgres;

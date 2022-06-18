@@ -2,7 +2,7 @@
 
 BEGIN;
 
-CREATE SCHEMA public;
+--CREATE SCHEMA public;
 CREATE TABLE public.users(
                       user_id serial PRIMARY KEY,
                       first_name varchar(30) NOT NULL CHECK(LENGTH(first_name) > 0),
