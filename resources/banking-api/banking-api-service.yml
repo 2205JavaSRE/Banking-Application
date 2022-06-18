@@ -10,7 +10,9 @@ spec:
   selector:
     app: banking-api
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 7400
       protocol: TCP
+
 
