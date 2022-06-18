@@ -34,6 +34,12 @@ create table public.transactions(
                              transaction_time timestamp NOT NULL DEFAULT current_timestamp,
                              status t_status NOT NULL
 );
+
+INSERT INTO public.users VALUES (4, 'adam', 'garden', 'adamgarden', 'letmein');
+INSERT INTO public.users VALUES (5, 'eve', 'garden', 'evegarden', 'letmeout');
+INSERT INTO public.users VALUES (6, 'joe', 'pesci', 'vinny', 'yutes');
+INSERT INTO public.users VALUES (7, 'Elon', 'Musk', 'ElonMusk', 'T3sla');
+
 INSERT INTO public.accounts VALUES (3, 4, 4, 'CHECKING', 777.7, false);
 INSERT INTO public.accounts VALUES (6, 7, 7, 'CHECKING', 696969420, false);
 INSERT INTO public.accounts VALUES (14, 7, 7, 'CHECKING', 888, true);
@@ -59,10 +65,5 @@ INSERT INTO public.transactions VALUES (14, 'TRANSFER', 7, 5, 100, '2022-06-15 1
 INSERT INTO public.transactions VALUES (15, 'TRANSFER', 7, 4, 200, '2022-06-15 15:35:27.974', 'DENIED');
 INSERT INTO public.transactions VALUES (16, 'TRANSFER', 7, 4, 200, '2022-06-15 15:36:45.477', 'APPROVED');
 INSERT INTO public.transactions VALUES (17, 'TRANSFER', 7, 14, 50, '2022-06-17 16:12:16.59', 'PENDING');
-
-INSERT INTO public.users VALUES (4, 'adam', 'garden', 'adamgarden', 'letmein');
-INSERT INTO public.users VALUES (5, 'eve', 'garden', 'evegarden', 'letmeout');
-INSERT INTO public.users VALUES (6, 'joe', 'pesci', 'vinny', 'yutes');
-INSERT INTO public.users VALUES (7, 'Elon', 'Musk', 'ElonMusk', 'T3sla');
 
 COMMIT;
