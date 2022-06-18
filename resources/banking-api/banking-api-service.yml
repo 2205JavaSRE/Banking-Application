@@ -6,12 +6,12 @@ metadata:
   labels:
     app: banking-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: banking-api-app
   ports:
     - port: 80
-      targetPort: 7400
+      targetPort: 7700
       protocol: TCP
 
 

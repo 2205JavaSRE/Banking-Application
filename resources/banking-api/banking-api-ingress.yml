@@ -17,5 +17,5 @@ spec:
             service: 
               name: banking-api-service
               port: 
-                number: 7400
+                number: 7700
 

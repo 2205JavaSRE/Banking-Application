@@ -20,5 +20,5 @@ spec: # Specifications for the Deployment!
         - name: banking-api-pod
           image: ooido/banking-api
           ports:
-            - containerPort: 7400
+            - containerPort: 7700
           imagePullPolicy: Always
