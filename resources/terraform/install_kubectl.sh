@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Installing kubectl 1.21.1"
 sudo touch /etc/yum.repos.d/kubernetes.repo
 sudo bash -c 'cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
