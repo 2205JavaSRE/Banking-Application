@@ -7,7 +7,7 @@ metadata:
 spec:  
   containers: 
     - name: postgres-container  
-      image: ooido/bapi-postgres
+      image: ooido/pg-pod
       imagePullPolicy: Always
       ports: 
         - containerPort: 5432 
