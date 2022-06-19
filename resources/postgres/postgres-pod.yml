@@ -13,9 +13,9 @@ spec:
         - containerPort: 5432 
       env:
         - name: POSTGRES_USER
-          value: "postgres"
+          value: postgres
         - name: POSTGRES_PASSWORD
-          value: "TNNFEtnnfe"
+          value: TNNFEtnnfe
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
       volumeMounts: 
@@ -38,15 +38,6 @@ spec:
       #          secretKeyRef:
       #            name: mysecret
       #            key: password
-      #      - name: POSTGRES_DB
-      #        valueFrom:
-      #          secretKeyRef:
-      #            name: mysecret
-      #            key: url
-      #
-      #
-      #
-      #
 # Create a kustomization.yaml file with SecretGenerator
 #  $ cat <<EOF >./kustomization.yaml
 #secretGenerator:
@@ -55,6 +46,3 @@ spec:
 #      - username=admin
 #      - password=secret
 #  EOF
-
-
-

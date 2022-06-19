@@ -24,7 +24,7 @@ spec: # Specifications for the Deployment!
           imagePullPolicy: Always
           env:
             - name: db_url
-              value: jdbc:postgresql://pg-service:5432/postgres
+              value: jdbc:postgresql://postgres-service:5432/postgres
             - name: db_username
               value: postgres
             - name: db_password
