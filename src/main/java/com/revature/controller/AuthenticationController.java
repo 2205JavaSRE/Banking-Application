@@ -16,7 +16,12 @@ public class AuthenticationController {
         if(access){
             ctx.status(HttpStatus.OK_200);
             User u = UserService.getUser(login.getUsername());
-            ctx.cookieStore("user", u);
+            ctx.cookieStore("username", u.getUsername());
+            ctx.cookieStore("auth", u.getPassword());
+            ctx.cookieStore("userID", u.getUserID());
+            ctx.cookieStore("firstName", u.getFirstName());
+            ctx.cookieStore("lastName", u.getLastName());
+            ctx.cookieStore("employee", u.isEmployee());
         }else {
             ctx.status(HttpStatus.UNAUTHORIZED_401);
         }
@@ -24,7 +29,7 @@ public class AuthenticationController {
 
 
     public static boolean verifyUser(Context ctx){
-        User u = ctx.cookieStore("user");
+        User u = retrieveUserFromCookie(ctx);
         if(u != null){
             return true;
         }else{
@@ -43,6 +48,21 @@ public class AuthenticationController {
     	} catch (Exception e) {
     		ctx.status(HttpStatus.BAD_REQUEST_400);
     	}
+    }
+
+    public static User retrieveUserFromCookie(Context ctx){
+        User u = null;
+        String username = ctx.cookieStore("username");
+        String pass = ctx.cookieStore("auth");
+        Integer userID = ctx.cookieStore("userID");
+        String fName = ctx.cookieStore("fName");
+        String lName = ctx.cookieStore("lName");
+        Boolean isEmployee = ctx.cookieStore("employee");
+        if(username != null){
+            u = new User(userID, fName, lName, username, pass, isEmployee);
+        }
+
+        return u;
     }
     
 }

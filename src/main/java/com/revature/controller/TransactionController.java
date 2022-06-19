@@ -12,7 +12,7 @@ public class TransactionController {
     public static void postTransaction(Context ctx){
         try {
             Transaction t = ctx.bodyAsClass(Transaction.class);
-            if (!TransactionService.postTransaction(t, ctx.cookieStore("user"))) {
+            if (!TransactionService.postTransaction(t, AuthenticationController.retrieveUserFromCookie(ctx))) {
                 ctx.status(HttpStatus.BAD_REQUEST_400);
             } else {
                 ctx.status(HttpStatus.CREATED_201);
@@ -23,7 +23,7 @@ public class TransactionController {
     }
 
     public static void getAllTransactions(Context ctx){
-        User u = ctx.cookieStore("user");
+        User u = AuthenticationController.retrieveUserFromCookie(ctx);
         if(u.isEmployee()){
             ctx.json(TransactionService.getAllTransactions());
         }else{
@@ -32,7 +32,7 @@ public class TransactionController {
     }
 
 	public static void updateTranfer(Context ctx) {
-		if(!TransactionService.updateTransfer(ctx.bodyAsClass(Transaction.class), ctx.cookieStore("user"))) {
+		if(!TransactionService.updateTransfer(ctx.bodyAsClass(Transaction.class), AuthenticationController.retrieveUserFromCookie(ctx))) {
 			ctx.status(HttpStatus.FORBIDDEN_403);
 		}
 	}
