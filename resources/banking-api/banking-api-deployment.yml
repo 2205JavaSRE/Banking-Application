@@ -4,7 +4,7 @@ metadata:
   name: banking-api-deployment
   namespace: ooido-space #nullspace
   labels: 
-    app: banking-api-app
+    app: banking-api
 
 spec: # Specifications for the Deployment!
   replicas: 3

@@ -24,7 +24,7 @@ spec:
   volumes: 
     - name: db-data #I'm attaching the volume in the container, labelled as "db-data" to an external volume 
       persistentVolumeClaim:
-        claimName: pg-pvc #I'm storing it somewhere that will get destroyed, only good for temporary data.
+        claimName: postgres-pvc #I'm storing it somewhere that will get destroyed, only good for temporary data.
                   # If the pod is destroyed, all the data is destroyed. 
                   # For you guys, you should be storing it in AWS EBS
       #    env:
