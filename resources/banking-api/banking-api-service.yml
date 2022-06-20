@@ -4,7 +4,7 @@ metadata:
   name: banking-api-service
   namespace: ooido-space
   labels:
-    app: banking-api-service
+    app: banking-api-app
 spec:
   selector:
     app: banking-api-app
