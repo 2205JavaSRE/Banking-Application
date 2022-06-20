@@ -29,8 +29,8 @@ pipeline {
         }
         stage("Deployment"){
             steps{
-                sh "aws --profile ben-sre-1368 configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
-                sh "aws --profile ben-sre-1368 configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+                sh "aws --profile ben-sre-1368 configure set aws_access_key_id $AWS_ACCESS_KEY_ID"
+                sh "aws --profile ben-sre-1368 configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
                 sh "aws eks --region us-east-1 update-kubeconfig --name ben-sre-1368 --profile ben-sre-1368"
 
                 echo "______deleting old kube resources"
