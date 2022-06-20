@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: banking-api-service
-  namespace: ooido-space
+  namespace: null-space
   labels:
     app: banking-api-app
 spec:

@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: banking-api-monitor
-  namespace: ooido-space
+  namespace: null-space
   labels:
     app: banking-api-app
     prometheus: devops

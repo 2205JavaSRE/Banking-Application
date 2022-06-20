@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata: 
   name: banking-api-deployment
-  namespace: ooido-space #nullspace
+  namespace: null-space
   labels: 
     app: banking-api-app
 
