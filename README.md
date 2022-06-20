@@ -7,7 +7,7 @@ Project 2 will be a group project focusing on the deployment and monitoring of a
 The goal is to introduce working in a group and researching SRE principles.
 
 ## Methodology
-
+ 
 Each group should follow an Agile approach and implement the SCRUM methodology.
 - Each team will designate a team leader and decide on a team name 
 - Each team will choose a project from one of their member's Project 0's.
