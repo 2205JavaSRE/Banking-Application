@@ -11,6 +11,7 @@ public class AuthenticationService {
 	
 	public static boolean authenticate(String username, String password) {
 		User user = uDao.getUserByUsername(username);
+		System.out.println("Authentication Service.authenticate: " + user);
 		if (user == null || !user.getPassword().equals(password)) {
 			return false;
 		} else {
