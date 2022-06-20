@@ -10,15 +10,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class MainDriver {
-    public static Monitor monitor = new Monitor();
     public static void main(String[] args){
-
+        Monitor monitor = new Monitor();
 
         Javalin myApp = Javalin.create(
                 config -> {
                     config.registerPlugin(new MicrometerPlugin(monitor.getRegistry()));
                 }
-        ).start(7700);
+        ).start(7400);
         RequestMappings.configureRoutes(myApp, monitor);
     }
     

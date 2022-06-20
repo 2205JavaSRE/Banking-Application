@@ -39,12 +39,12 @@ public class AuthenticationController {
     private static JWTProvider provider = new JWTProvider(algorithm, generator, verifier);
     //decodeHandler using cookies for JWT
     static Handler decodeHandler = JavalinJWT.createCookieDecodeHandler(provider);
-
+    
     //DecodeHandler using Header for JWT
     //static Handler decodeHandler = JavalinJWT.createHeaderDecodeHandler(provider);
-
+	
 	private AuthenticationController() {}
-
+	
     public static void authenticate(Context ctx){
         User login = ctx.bodyAsClass(User.class);
         boolean access = AuthenticationService.authenticate(login.getUsername(), login.getPassword());
@@ -52,15 +52,14 @@ public class AuthenticationController {
             ctx.status(HttpStatus.OK_200);
             User u = UserService.getUser(login.getUsername());
             String token = provider.generateToken(u);
-
+            
             //Store JWT in cookie (Can use an optional third argument to set an expiration of the cookie in seconds (int))
             ctx.cookie("jwt", token);
-
+            
             //Return JWT as JSON (must manually put in to Authorization in Postman)
             //ctx.json(new JWTResponse(token));
         }else {
             ctx.status(HttpStatus.UNAUTHORIZED_401);
-            System.out.println("AuthenticationController.authenticate: false");
         }
     }
 
@@ -68,13 +67,13 @@ public class AuthenticationController {
     public static boolean verifyUser(Context ctx){
     	//Get JWT from Header
     	//Optional<DecodedJWT> decodedJWT = JavalinJWT.getTokenFromHeader(ctx).flatMap(provider::validateToken);
-
+    	
     	//Get JWT from Cookie
     	Optional<DecodedJWT> decodedJWT = JavalinJWT.getTokenFromCookie(ctx).flatMap(provider::validateToken);
-
+    	
     	return decodedJWT.isPresent();
     }
-
+    
     public static void createUser(Context ctx) {
     	try {
     		User u = ctx.bodyAsClass(User.class);
@@ -87,5 +86,5 @@ public class AuthenticationController {
     		ctx.status(HttpStatus.BAD_REQUEST_400);
     	}
     }
-
+    
 }

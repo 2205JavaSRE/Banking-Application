@@ -1,7 +1,5 @@
 package com.revature.util;
 
-import com.revature.MainDriver;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,7 +18,6 @@ public class ConnectionFactory {
             connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
-            MainDriver.monitor.incrementSqlCounter();
         }
 
         return connection;

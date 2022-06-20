@@ -1,7 +1,6 @@
 package com.revature.util;
 
 import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.Timer;
 import io.micrometer.core.instrument.binder.jvm.ClassLoaderMetrics;
 import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics;
 import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
@@ -17,22 +16,10 @@ import java.io.File;
 public class Monitor {
     PrometheusMeterRegistry registry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
 
-    public Counter sqlErrors = Counter
-            .builder("Number of SQL errors")
-            .description("to keep track of how many times SQL fails us")
+    public Counter activeSessions = Counter
+            .builder("Number of Logins")
+            .description("to keep track of how many users have logged in")
             .tag("purpose", "testing")
-            .register(registry);
-
-    public Counter internalServerErrors = Counter
-            .builder("Counts all internal server errors")
-            .description("Increments whenever a 500 error code is returned")
-            .tag("purpose", "testing")
-            .register(registry);
-
-    public Timer requestLatancy = Timer
-            .builder("Request Latency")
-            .description("Records the internal response time to a request")
-            .tag("purpose", "metrics")
             .register(registry);
 
     public Monitor(){
@@ -45,16 +32,8 @@ public class Monitor {
         new DiskSpaceMetrics(new File(System.getProperty("user.dir"))).bindTo(registry);
     }
 
-    public Timer getRequestLatency(){
-        return requestLatancy;
-    }
-
-    public void incrementSqlCounter(){
-        sqlErrors.increment();
-    }
-
-    public void incrementServorError(){
-        internalServerErrors.increment();
+    public void incrementCounter(){
+        activeSessions.increment();
     }
 
 

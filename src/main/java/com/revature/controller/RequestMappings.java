@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-import com.revature.models.User;
 import com.revature.util.Monitor;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
@@ -9,29 +8,25 @@ import javalinjwt.JavalinJWT;
 import org.eclipse.jetty.http.HttpStatus;
 
 public class RequestMappings {
-
+	
 	private RequestMappings() {}
-
+	
     public static void configureRoutes(Javalin app, Monitor monitor){
-
+    	
     	//Needed for JWT
     	app.before(AuthenticationController.decodeHandler);
-
+    	
         //General login paths
-        app.post("/api/v1/login", ctx -> {
-            monitor.getRequestLatency().record(() -> {
-                AuthenticationController.authenticate(ctx);
-            });
-        });
+        app.post("/api/v1/login", AuthenticationController::authenticate);
 
         app.get("/api/v1/logout", ctx -> {
             ctx.removeCookie("jwt");
             ctx.status(HttpStatus.OK_200);
         });
-
+        
         //Customer post requests
         app.post("/api/v1/register", AuthenticationController::createUser);
-
+        
         app.post("/api/v1/accounts", ctx -> {
             if(AuthenticationController.verifyUser(ctx)){
                 AccountController.createAccount(ctx);
@@ -47,7 +42,7 @@ public class RequestMappings {
                ctx.status(HttpStatus.UNAUTHORIZED_401);
            }
         });
-
+        
         //Dual-purpose get requests
         app.get("/api/v1/accounts", ctx -> {
            if(AuthenticationController.verifyUser(ctx)){
@@ -80,7 +75,7 @@ public class RequestMappings {
                  ctx.status(HttpStatus.UNAUTHORIZED_401);
              }
         });
-
+        
         app.patch("/api/v1/transactions", ctx -> {
         	if(AuthenticationController.verifyUser(ctx)){
                 TransactionController.updateTranfer(ctx);
@@ -96,13 +91,6 @@ public class RequestMappings {
         app.get("/coffee", ctx -> {
             ctx.result("I'm a teapot!");
             ctx.status(HttpStatus.IM_A_TEAPOT_418);
-        });
-
-        app.after(ctx -> {
-            User u = ctx.sessionAttribute("user");
-            if(ctx.status() == 500){
-                monitor.incrementServorError();
-            }
         });
     }
 
