@@ -24,6 +24,7 @@ public class AuthenticationController {
             ctx.cookieStore("employee", u.isEmployee());
         }else {
             ctx.status(HttpStatus.UNAUTHORIZED_401);
+            System.out.println("AuthenticationController.authenticate: false");
         }
     }
 

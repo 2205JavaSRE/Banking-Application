@@ -1,0 +1,118 @@
+Service Level Objectives Document
+Service name: Banking API 
+Service description: A banking API that simulates banking operations. A customer can apply for an account, view their balance, and make withdrawals and deposits. An employee can approve or deny accounts and view account balances for their customers.
+Authors: Aaron Schroeder & Jeremy Engelsman
+Date: 6/17/2022
+Date Approved: 
+Approved by: Benjamin Arayathel
+
+SLIs:
+	All averages are over the last week.
+	API: 
+		HTTP Request Latency
+			Requests taking less than 3 seconds / all requests
+			Requests taking less than 1.5 seconds / all requests
+			Requests taking less than 1 seconds / all requests
+			Requests taking less than 0.8 seconds / all requests
+			Requests taking less than 0.5 seconds / all requests
+			
+			ex:
+            Maybe take account of outliers in the calculation (logout).
+
+
+		Error rate
+			All HTTP5XX codes / All Successful HTTP requests
+			
+			ex:
+			sum(rate(http_requests_total{host="app", status~"5.."}[7d]))
+			/
+			sum(rate(http_requests_total{host="app", status!~"5.."}[7d]))
+			
+		Availability
+			!HTTP5XX codes / all http requests
+			
+			ex:
+			sum(rate(http_requests_total{host="app", status!~"5.."}[7d]))
+			/
+			sum(rate(http_requests_total{host="app"}[7d])
+		
+		Throughput:
+			Test?
+
+		Correctness:
+			Test?
+		
+	Database:
+		Latency:
+			Requests taking less than 3 seconds / all requests
+			Requests taking less than 1.5 seconds / all requests
+			Requests taking less than 0.5 seconds / all requests
+		Error rate:
+			All SQL based 500s  / all successful http requests 
+			or
+			All failed database connections / All database connections
+
+    Maybe custom indicator if database stuff is not unique.
+
+
+
+1 Week Window for Each SLO
+SLOs:
+	API:
+		HTTP Request Latency:
+			99% of requests < 3 seconds
+			90% of requests < 1.5 seconds
+			50% of requests < 0.8 seconds
+		
+		Availability:
+			97% ? 99%?
+
+		Throughput:
+			Test?
+			
+		Correctness:
+			Test?
+	
+	Database:
+		Latency: 
+			99% of requests < 3 seconds
+			90% of requests < 1.5 seconds
+			50% of all requests < 0.5 seconds
+		Error Rate:
+			between 99% and 99.9% (2 nines, 3 nines)
+			
+Rationale:
+	Measure these things and see if our SLIs and SLOs make sense, then use this measurement to justify.
+	As we do not have the ability to fully load test our service, our targets are based on our assumptions and measurements.
+	All averages are over the last week, because we want to improve performance rapidly within an agile development methodology.
+	
+Error Budget:
+	Every SLO has its own.
+	100%-99%: ex 5000-4950
+	100%-99%: ex 5000-4850
+	
+Stakeholder agreement:
+	Product manager:
+		Talk to ben about this and see if he agrees that these standards make sense.
+	Developers:
+		Decide amongst ourselves if we can maintain this level of service.
+	SREs:	
+		Decide amongst ourselves as SREs if we can maintain this level of service.
+		
+Error Budget Policy:
+	If we exceed our error budget, what do we do?
+		Manager: provision more financial resources for AWS or developer time
+		Devs: devote more time to fixing bugs
+		Devs: freeze new features
+		SRE: Latency high? Provision faster servers/databases.
+		
+Dashboard:
+	API:
+		Latency
+		Error Rate
+		Availability
+		Error Budget for each
+	Database:
+		Latency
+		Error Rate
+		Error Budget for each
