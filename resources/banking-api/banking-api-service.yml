@@ -4,9 +4,9 @@ metadata:
   name: banking-api-service
   namespace: ooido-space
   labels:
-    app: banking-api-service
+    app: banking-api-app
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: banking-api-app
   ports:
