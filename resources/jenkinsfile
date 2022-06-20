@@ -14,16 +14,17 @@ pipeline {
         }
         stage("Docker Build and Push"){
             steps{
+
             }
         }
         stage("Stage 3"){
-
             steps{
+
             }
         }
         stage("stage 4"){
-
             steps{
+
             }
         }
     }
