@@ -2,8 +2,7 @@ pipeline {
     agent any
     environment{
         DOCKERHUB_CREDS = credentials('dockerHubCredentials')
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+        AWS_CREDS = credentials('awsCreds')
     }
     stages {
         stage("Maven Build"){
@@ -29,8 +28,8 @@ pipeline {
         }
         stage("Deployment"){
             steps{
-                sh "aws --profile ben-sre-1368 configure set aws_access_key_id $AWS_ACCESS_KEY_ID"
-                sh "aws --profile ben-sre-1368 configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
+                sh "aws --profile ben-sre-1368 configure set aws_access_key_id $AWS_CREDS_USR"
+                sh "aws --profile ben-sre-1368 configure set aws_secret_access_key $AWS_CREDS_PSW"
                 sh "aws eks --region us-east-1 update-kubeconfig --name ben-sre-1368 --profile ben-sre-1368"
 
                 echo "______deleting old kube resources"
