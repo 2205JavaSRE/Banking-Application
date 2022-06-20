@@ -17,7 +17,7 @@ public class AuthenticationController {
             ctx.status(HttpStatus.OK_200);
             User u = UserService.getUser(login.getUsername());
             ctx.sessionAttribute("user", u);
-            System.out.println("AuthenticationController.authenticate: true" + u);
+            System.out.println("AuthenticationController.authenticate: true " + u);
         }else {
             ctx.status(HttpStatus.UNAUTHORIZED_401);
             System.out.println("AuthenticationController.authenticate: false");
