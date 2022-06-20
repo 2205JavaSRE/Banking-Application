@@ -17,7 +17,7 @@ spec: # Specifications for the Deployment!
         app: banking-api-app
     spec:
       containers: 
-        - name: banking-api-pod
+        - name: banking-api-app-deployment
           image: ooido/banking-api
           ports:
             - containerPort: 7700
