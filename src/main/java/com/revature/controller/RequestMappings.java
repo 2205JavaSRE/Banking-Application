@@ -27,7 +27,6 @@ public class RequestMappings {
         //Customer post requests
         app.post("/api/v1/register", AuthenticationController::createUser);
         
-        //TODO Fix primaryID input bug. (Any id other than current user's primaryid either puts that number as joint id, or doesn't make a new account but still returns 201 status)
         app.post("/api/v1/accounts", ctx -> {
             if(AuthenticationController.verifyUser(ctx)){
                 AccountController.createAccount(ctx);
@@ -94,7 +93,5 @@ public class RequestMappings {
             ctx.status(HttpStatus.IM_A_TEAPOT_418);
         });
     }
-
-
 
 }

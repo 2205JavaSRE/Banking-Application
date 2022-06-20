@@ -21,7 +21,7 @@ public class AccountService {
 			if (a.getJointOwnerID() != -1 && uDao.existsByUserID(a.getJointOwnerID())) {
 				aDao.insertAccount(a, u);
 			} else {
-				a.setJointOwnerID(a.getPrimaryOwnerID());
+				a.setJointOwnerID(u.getUserID());
 				aDao.insertAccount(a, u);
 			}
 			return true;
