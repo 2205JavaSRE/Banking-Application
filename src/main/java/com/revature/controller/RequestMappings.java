@@ -3,8 +3,6 @@ package com.revature.controller;
 import com.revature.models.User;
 import com.revature.util.Monitor;
 import io.javalin.Javalin;
-import io.javalin.http.Handler;
-import javalinjwt.JavalinJWT;
 
 import org.eclipse.jetty.http.HttpStatus;
 

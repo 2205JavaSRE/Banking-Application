@@ -13,7 +13,6 @@ import io.javalin.http.Handler;
 import javalinjwt.JWTGenerator;
 import javalinjwt.JWTProvider;
 import javalinjwt.JavalinJWT;
-import javalinjwt.examples.JWTResponse;
 
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ import org.eclipse.jetty.http.HttpStatus;
 
 public class AuthenticationController {
 	//Choose any algorithm and secret key for JWT
-	private static Algorithm algorithm = Algorithm.HMAC256("TNNFEtnnfe");
+	private static Algorithm algorithm = Algorithm.HMAC256("TNNFEtnnfe"); //TODO Make ENV variable
 	//For JWT
 	private static JWTGenerator<User> generator = (user, alg) -> {
         JWTCreator.Builder token = JWT.create()
