@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        DOCKERHUB_CREDS = credentials(dockerHubCredentials)
+        DOCKERHUB_CREDS = credentials('dockerHubCredentials')
     }
     stages {
         stage(" Maven Build"){
