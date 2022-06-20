@@ -6,7 +6,7 @@ metadata:
   labels: 
     app: banking-api-app
 
-spec: # Specifications for the Deployment!1
+spec: # Specifications for the Deployment!
   replicas: 3
   selector: 
     matchLabels: 
