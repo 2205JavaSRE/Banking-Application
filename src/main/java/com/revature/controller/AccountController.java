@@ -1,13 +1,15 @@
 package com.revature.controller;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.revature.models.*;
 import com.revature.service.AccountService;
 import io.javalin.http.Context;
+import javalinjwt.JavalinJWT;
+
 import org.eclipse.jetty.http.HttpStatus;
 import java.util.*;
 public class AccountController {
     public static void createAccount(Context ctx){
-        User u = ctx.sessionAttribute("user");
-        System.out.println(u);
+        User u = getCurrentUser(ctx);
         try {
         	Account a = ctx.bodyAsClass(Account.class);
         	if(!AccountService.createAccount(a, u)){
@@ -22,7 +24,7 @@ public class AccountController {
     }
 
     public static void getAccounts(Context ctx){
-        User u = ctx.sessionAttribute("user");
+        User u = getCurrentUser(ctx);
         if(u.isEmployee()){
             ctx.json(AccountService.getAllPendingAccounts());
         }else{
@@ -31,7 +33,7 @@ public class AccountController {
     }
 
     public static void getAccountsById(Context ctx){
-        User u = ctx.sessionAttribute("user");
+        User u = getCurrentUser(ctx);
         if(u.isEmployee()){
             try {
                 int id = Integer.parseInt(ctx.pathParam("id"));
@@ -60,6 +62,15 @@ public class AccountController {
 		}
 	}
 	
+	//Decodes user info from JWT
+	private static User getCurrentUser(Context ctx) {
+		DecodedJWT decodedJWT = JavalinJWT.getDecodedFromContext(ctx);
+		return new User(decodedJWT.getClaim("userID").asInt(), 
+				decodedJWT.getClaim("firstName").asString(), 
+				decodedJWT.getClaim("lastName").asString(), 
+				decodedJWT.getClaim("username").asString(), 
+				decodedJWT.getClaim("password").asString(), 
+				decodedJWT.getClaim("isEmployee").asBoolean());
+	}
 	
-
 }

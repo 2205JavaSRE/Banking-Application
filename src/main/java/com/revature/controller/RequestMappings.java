@@ -2,6 +2,9 @@ package com.revature.controller;
 
 import com.revature.util.Monitor;
 import io.javalin.Javalin;
+import io.javalin.http.Handler;
+import javalinjwt.JavalinJWT;
+
 import org.eclipse.jetty.http.HttpStatus;
 
 public class RequestMappings {
@@ -9,16 +12,22 @@ public class RequestMappings {
 	private RequestMappings() {}
 	
     public static void configureRoutes(Javalin app, Monitor monitor){
+    	
+    	//Needed for JWT
+    	app.before(AuthenticationController.decodeHandler);
+    	
         //General login paths
         app.post("/api/v1/login", AuthenticationController::authenticate);
 
-        app.post("/api/v1/logout", ctx -> {
-            ctx.consumeSessionAttribute("user");
+        app.get("/api/v1/logout", ctx -> {
+            ctx.removeCookie("jwt");
             ctx.status(HttpStatus.OK_200);
         });
+        
         //Customer post requests
         app.post("/api/v1/register", AuthenticationController::createUser);
-
+        
+        //TODO Fix primaryID input bug. (Any id other than current user's primaryid either puts that number as joint id, or doesn't make a new account but still returns 201 status)
         app.post("/api/v1/accounts", ctx -> {
             if(AuthenticationController.verifyUser(ctx)){
                 AccountController.createAccount(ctx);
