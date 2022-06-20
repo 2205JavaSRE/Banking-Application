@@ -33,7 +33,7 @@ pipeline {
                 sh "aws --profile ben-sre-1368 configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY""
                 sh "aws eks --region us-east-1 update-kubeconfig --name ben-sre-1368 --profile ben-sre-1368"
 
-                echo ______deleting old kube resources"
+                echo "______deleting old kube resources"
                 sh "kubectl delete -f ./resources/postgres/postgres-pod.yml -n ooido-space"
                 sh "kubectl delete -f ./resources/postgres/postgres-pvc.yml -n ooido-space"
                 sh "kubectl delete -f ./resources/postgres/postgres-service.yml -n ooido-space"
@@ -45,7 +45,7 @@ pipeline {
                 sh "kubectl delete -f ./resources/banking-api/banking-api-service.yml -n ooido-space"
                 sh "kubectl delete -f ./resources/banking-api/banking-api-ingress.yml -n ooido-space"
 
-                echo ______applying new kube resources"
+                echo "______applying new kube resources"
                 sh "kubectl apply -f ./resources/postgres/postgres-configmap.yml -n ooido-space"
                 sh "kubectl apply -f ./resources/postgres/postgres-pod.yml -n ooido-space"
                 sh "kubectl apply -f ./resources/postgres/postgres-pvc.yml -n ooido-space"
