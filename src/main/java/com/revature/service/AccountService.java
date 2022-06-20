@@ -4,7 +4,6 @@ import java.util.List;
 import com.revature.dao.AccountDao;
 import com.revature.dao.UserDao;
 import com.revature.models.Account;
-import com.revature.models.AccountType;
 import com.revature.models.User;
 
 public class AccountService {

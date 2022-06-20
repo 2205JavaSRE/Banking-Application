@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: banking-api-service
+  namespace: ooido-space
+  labels:
+    app: banking-api-app
+spec:
+  type: ClusterIP
+  selector:
+    app: banking-api-app
+  ports:
+    - port: 80
+      targetPort: 7700
+      protocol: TCP
+
+
