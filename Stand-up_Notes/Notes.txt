@@ -1,8 +1,10 @@
-  ###Monday, June 13th:###
+  Monday, June 13th
+  #######################
 If we have a merge conflict, we don't fix it ourselves. We'll fix it together in the next standup.
 
 
-  ###Tuesday, June 14th:###
+  Tuesday, June 14th
+  #######################
 Merge to main with completed methods/functionality only
 
 What was accomplished yesterday:
@@ -13,7 +15,8 @@ Plan for today:
 Jeremy/Josh-Dao layer
 Braylen/Aaron-Finish RequestMapping and Service Layer
 
-  ###Wednesday, June 15th###
+  Wednesday, June 15th
+  #######################
 What everyone did yesterday:
 Jeremy finished Dao
 Aaron/Braylen finished Controller/Service
@@ -28,7 +31,8 @@ SLO:
 Latency%
 500 Error rates% successful status vs total status
 
-  ###Thursday June 16th###
+  Thursday, June 16th
+  #######################
 What we did yesterday:
 Finished implementing and testing our Java program
 
@@ -41,3 +45,16 @@ Braylen/Jeremy Kubernetes
 
 Jeremy Jenkins, Terraform
 
+  Friday, June 17th
+  #######################
+What we did yesterday:
+Aaron created a Timer and Counter
+
+Braylen worked on creating an instance of prometheus to check our custom metrics
+
+Jeremy set up the Terraform script for Jenkins
+
+What to do today:
+Define SLOs/SLIs better
+
+Get project set up on kubernetes cluster
