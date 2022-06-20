@@ -4,7 +4,7 @@ metadata:
   name: banking-api-deployment
   namespace: ooido-space #nullspace
   labels: 
-    app: banking-api-app
+    app: banking-api
 
 spec: # Specifications for the Deployment!
   replicas: 3
@@ -17,7 +17,7 @@ spec: # Specifications for the Deployment!
         app: banking-api-app
     spec:
       containers: 
-        - name: banking-api-app-deployment
+        - name: banking-api-app-container
           image: ooido/banking-api
           ports:
             - containerPort: 7700
