@@ -22,7 +22,7 @@ public class RequestMappings {
             });
         });
 
-        app.get("/api/v1/logout", ctx -> {
+        app.post("/api/v1/logout", ctx -> {
             ctx.removeCookie("jwt");
             ctx.status(HttpStatus.OK_200);
         });
