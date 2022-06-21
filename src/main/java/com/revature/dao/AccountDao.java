@@ -4,7 +4,6 @@ import com.revature.MainDriver;
 import com.revature.models.Account;
 import com.revature.models.AccountType;
 import com.revature.models.User;
-import com.revature.models.TransactionStatus;
 import com.revature.util.ConnectionFactory;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class AccountDao implements AccountDaoInterface {
      */
     @Override
     public void insertAccount(Account account, User user) {
-        MainDriver.monitor.getRequestLatency().record(() -> {
+        MainDriver.monitor.getDbRequestLatency().record(() -> {
             //int accountID, int primaryOwnerID, int secondaryOwnerID, AccountType accountType, double balance, boolean approved
             String sql = "insert into accounts (primary_owner_id, joint_owner_id, account_type, balance, approved) values " +
                     "((select user_id from users where username = ?),?,?::a_type,?,?)";
@@ -45,7 +44,7 @@ public class AccountDao implements AccountDaoInterface {
      */
     @Override
     public void updateAccount(Account account) {
-        MainDriver.monitor.getRequestLatency().record(() -> {
+        MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "update accounts set joint_owner_id = ?, balance = ?, approved = ? where account_id = ?";
             Connection connection = ConnectionFactory.getConnection();
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -67,7 +66,7 @@ public class AccountDao implements AccountDaoInterface {
      */
     @Override
     public Account getAccountByAccountID(int accountID) {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from accounts where account_id = ?";
             Connection connection = ConnectionFactory.getConnection();
             Account account = null;
@@ -100,7 +99,7 @@ public class AccountDao implements AccountDaoInterface {
      */
     @Override
     public ArrayList<Account> getAccountsByOwnerID(int ownerID) {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from accounts where primary_owner_id = ? or joint_owner_id = ?";
             Connection connection = ConnectionFactory.getConnection();
             ArrayList<Account> accounts = new ArrayList<>();
@@ -133,7 +132,7 @@ public class AccountDao implements AccountDaoInterface {
      */
     @Override
     public ArrayList<Account> getAccountsByApproval(boolean approvalStatus) {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from accounts where approved = ?";
             Connection connection = ConnectionFactory.getConnection();
             ArrayList<Account> accounts = new ArrayList<>();

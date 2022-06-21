@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class TransactionDao implements TransactionDaoInterface {
     @Override
     public void insertTransaction(Transaction transaction) {
-        MainDriver.monitor.getRequestLatency().record(() -> {
+        MainDriver.monitor.getDbRequestLatency().record(() -> {
             //int transactionID, TransactionType transactionType, int originAccount, int destinationAccount,
             // double transactionAmount, Timestamp timestamp, TransactionStatus transactionStatus
             String sql = "insert into transactions (transaction_type, origin_account_id, destination_account_id, transaction_amount, transaction_time, status) " +
@@ -39,7 +39,7 @@ public class TransactionDao implements TransactionDaoInterface {
 
     @Override
     public ArrayList<Transaction> getAllTransactions() {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             //int transactionID, TransactionType transactionType, int originAccount, int destinationAccount,
             // double transactionAmount, Timestamp timestamp, TransactionStatus transactionStatus
             String sql = "select * from transactions";
@@ -68,7 +68,7 @@ public class TransactionDao implements TransactionDaoInterface {
 
     @Override
     public ArrayList<Transaction> getPendingTransactionsByDestinationID(int destinationID) {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from transactions where destination_id = ?";
 
             Connection connection = ConnectionFactory.getConnection();
@@ -104,7 +104,7 @@ public class TransactionDao implements TransactionDaoInterface {
 
     @Override
     public void completeTransaction(Transaction transaction) {
-        MainDriver.monitor.getRequestLatency().record(() -> {
+        MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "update transactions set status = ?::t_status where transaction_id = ?";
 
             Connection connection = ConnectionFactory.getConnection();
@@ -121,7 +121,7 @@ public class TransactionDao implements TransactionDaoInterface {
     }
 
     public void updateTransactionStatus(Transaction transaction){
-        MainDriver.monitor.getRequestLatency().record(() -> {
+        MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "update transactions set status = ?::t_status where transaction_id = ?";
 
             Connection connection = ConnectionFactory.getConnection();
@@ -138,7 +138,7 @@ public class TransactionDao implements TransactionDaoInterface {
 
     @Override
     public Transaction getTransactionByID(int transactionID) {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from transactions where transaction_id = ?";
             Connection connection = ConnectionFactory.getConnection();
             Transaction transaction = null;

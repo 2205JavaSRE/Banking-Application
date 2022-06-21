@@ -11,7 +11,7 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public void insertUser(User user) {
-        MainDriver.monitor.getRequestLatency().record(() -> {
+        MainDriver.monitor.getDbRequestLatency().record(() -> {
             //int userID, String firstName, String lastName, String username, String password, boolean isEmployee)
             String sql = "insert into users (first_name, last_name, username, password) values " +
                     "(?,?,?,?)";
@@ -32,7 +32,7 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public User getUserByUsername(String username) {
-       return MainDriver.monitor.getRequestLatency().record(() -> {
+       return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id where username = ?";
             Connection connection = ConnectionFactory.getConnection();
             User user = null;
@@ -58,7 +58,7 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public User getUserByUserID(int userID) {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id where username = ?";
             Connection connection = ConnectionFactory.getConnection();
             User user = null;
@@ -85,7 +85,7 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public ArrayList<User> getAllUsers() {
-        return MainDriver.monitor.getRequestLatency().record(() -> {
+        return MainDriver.monitor.getDbRequestLatency().record(() -> {
             //int userID, String firstName, String lastName, String username, String password, boolean isEmployee)
             String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id";
             Connection connection = ConnectionFactory.getConnection();
@@ -121,7 +121,7 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public boolean existsByName(String username) {
-        return Boolean.TRUE.equals(MainDriver.monitor.getRequestLatency().record(() -> {
+        return Boolean.TRUE.equals(MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id where username = ?";
             Connection connection = ConnectionFactory.getConnection();
             boolean exists = false;
@@ -142,7 +142,7 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public boolean existsByUserID(int userID) {
-        return Boolean.TRUE.equals(MainDriver.monitor.getRequestLatency().record(() -> {
+        return Boolean.TRUE.equals(MainDriver.monitor.getDbRequestLatency().record(() -> {
             String sql = "select * from users a left join employees b on a.user_id = b.fk_user_id where user_id = ?";
             Connection connection = ConnectionFactory.getConnection();
             boolean exists = false;
