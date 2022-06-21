@@ -13,7 +13,7 @@ spec:
     path: /metrics
   namespaceSelector:
     matchNames:
-    - ooido-space
+    - null-space
   selector:
     matchLabels:
       app: banking-api-app
