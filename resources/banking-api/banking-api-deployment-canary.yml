@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banking-api-deployment
+  namespace: null-space
+  labels:
+    app: banking-api-app
+
+spec: # Specifications for the Deployment!
+  replicas: $CANARY_REPLICAS
+  selector:
+    matchLabels:
+      app: banking-api-app # has to match the template labels app.
+  template:
+    metadata:
+      labels:
+        app: banking-api-app
+    spec:
+      containers:
+        - name: banking-api-app-deployment
+          image: ooido/banking-api
+          ports:
+            - containerPort: 7700
+          imagePullPolicy: Always
+          env:
+            - name: db_url
+              value: jdbc:postgresql://postgres-service:5432/postgres
+            - name: db_username
+              value: postgres
+            - name: db_password
+              value: TNNFEtnnfe

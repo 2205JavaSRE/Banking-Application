@@ -17,7 +17,7 @@ public class RequestMappings {
         //General login paths
         app.post("/api/v1/login", AuthenticationController::authenticate);
 
-        app.get("/api/v1/logout", ctx -> {
+        app.post("/api/v1/logout", ctx -> {
             ctx.removeCookie("jwt");
             ctx.status(HttpStatus.OK_200);
         });

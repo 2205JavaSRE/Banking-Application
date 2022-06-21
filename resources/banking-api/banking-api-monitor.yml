@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: banking-api-monitor
+  namespace: null-space
+  labels:
+    app: banking-api-app
+    prometheus: devops
+spec:
+  endpoints:
+  - port: http
+    interval: 15s
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - null-space
+  selector:
+    matchLabels:
+      app: banking-api-app
