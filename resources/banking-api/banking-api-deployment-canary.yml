@@ -1,22 +1,22 @@
 apiVersion: apps/v1
-kind: Deployment 
-metadata: 
+kind: Deployment
+metadata:
   name: banking-api-deployment
   namespace: null-space
-  labels: 
+  labels:
     app: banking-api-app
 
 spec: # Specifications for the Deployment!
-  replicas: 3
-  selector: 
-    matchLabels: 
+  replicas: $CANARY_REPLICAS
+  selector:
+    matchLabels:
       app: banking-api-app # has to match the template labels app.
-  template: 
-    metadata: 
-      labels: 
+  template:
+    metadata:
+      labels:
         app: banking-api-app
     spec:
-      containers: 
+      containers:
         - name: banking-api-app-deployment
           image: ooido/banking-api
           ports:

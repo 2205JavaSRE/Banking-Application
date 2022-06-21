@@ -21,16 +21,34 @@ pipeline {
         }
         stage("Docker Push"){
             steps{
-                sh "docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW"
+                sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
                 sh "docker image push ooido/pg-pod"
                 sh "docker image push ooido/banking-api"
             }
         }
+        stage("Approval stage"){
+            steps{
+                script{
+                    // Prompt, if yes build, if no abort
+                    try {
+                        timeout(time: 1, unit: 'MINUTES'){
+                            approved = input message: 'Deploy to production?', ok: 'Continue',
+                                parameters: [choice(name: 'approved', choices: 'Yes\nNo', description: 'Deploy this build to production')]
+                            if(approved != 'Yes'){
+                                error('Build not approved')
+                            }
+                        }
+                    } catch (error){
+                        error('Build not approved in time')
+                    }
+                }
+            }
+        }
         stage("Deployment"){
             steps{
-                sh "aws --profile ben-sre-1368 configure set aws_access_key_id $AWS_CREDS_USR"
-                sh "aws --profile ben-sre-1368 configure set aws_secret_access_key $AWS_CREDS_PSW"
-                sh "aws eks --region us-east-1 update-kubeconfig --name ben-sre-1368 --profile ben-sre-1368"
+                sh 'aws --profile ben-sre-1368 configure set aws_access_key_id $AWS_CREDS_USR'
+                sh 'aws --profile ben-sre-1368 configure set aws_secret_access_key $AWS_CREDS_PSW'
+                sh 'aws eks --region us-east-1 update-kubeconfig --name ben-sre-1368 --profile ben-sre-1368'
 
                 echo "______deleting old kube resources"
                 sh "kubectl delete -f ./resources/postgres/postgres-pod.yml -n null-space"
