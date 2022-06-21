@@ -7,7 +7,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
-  namespace: ooido-space #nullspace
+  namespace: null-space
   labels:
     app: postgres
 
