@@ -1,0 +1,105 @@
+  Monday, June 13th
+  #######################
+If we have a merge conflict, we don't fix it ourselves. We'll fix it together in the next standup.
+
+
+  Tuesday, June 14th
+  #######################
+Merge to main with completed methods/functionality only
+
+What was accomplished yesterday:
+Jeremy/Josh-Completed Models layer
+Aaron/Braylen-Worked on Controller/Service layer
+
+Plan for today:
+Jeremy/Josh-Dao layer
+Braylen/Aaron-Finish RequestMapping and Service Layer
+
+  Wednesday, June 15th
+  #######################
+What everyone did yesterday:
+Jeremy finished Dao
+Aaron/Braylen finished Controller/Service
+
+What we will do today:
+Jeremy will implement TCL logic
+Braylen create Dockerfile
+Testing our Java program
+
+SLO:
+99.9%-99.99% uptime vs total time (can be reevaluated)
+Latency%
+500 Error rates% successful status vs total status
+
+  Thursday, June 16th
+  #######################
+What we did yesterday:
+Finished implementing and testing our Java program
+
+Jeremy started working with Jenkins
+
+New tasks:
+Aaron will work on custom metrics
+
+Braylen/Jeremy Kubernetes
+
+Jeremy Jenkins, Terraform
+
+  Friday, June 17th
+  #######################
+What we did yesterday:
+Aaron created a Timer and Counter
+
+Braylen worked on creating an instance of prometheus to check our custom metrics
+
+Jeremy set up the Terraform script for Jenkins
+
+What to do today:
+Define SLOs/SLIs better
+
+Get project set up on kubernetes cluster
+
+  Monday, June 20th
+  #######################
+
+Summary of events since 17th:
+
+Braylen asked to be relieved of involvement with SRE/Kubernetes topics and passed scrum leadership to Jeremy, so we redistributed the workload last friday. Braylen solo implemented JWT authorization, and in parallel Aaron implemented cookie based authentication. We chose to go with JWT. Jeremy wrote a temp init.sql, wrote the manifests, and set up the build pipeline using a Jenkinsfile. Jeremy and Aaron troubleshooted kubernetes & prometheus discovery issues and ultimately resolved them. 
+
+Braylen:
+
+	Worked:
+		Implemented and refactored project from sessions, in a branch, to JWT based authentication. Noted a bug in login.
+		Also wrote a new init.sql
+		
+	Goal:
+		JUnit
+		
+	Blockers:
+		None at the moment.
+
+Jeremy:
+
+	Worked: 
+		Implemented Kubernetes manifests for the api, as well as the database, using configmaps for secrets.
+		Wrote a starter init.sql
+
+	Goal:
+		Jenkinsfile
+		Make sure deployment is working.
+
+	Blockers:
+		Jenkinsfile stuff
+		application bugs make it unclear if kubernetes is properly set up or not. need collaboration to resolve.
+		webhook issues
+Aaron:
+
+	Worked:
+		Implemented cookie auth version in a branch.
+	Goal:
+		Help with Kubernetes
+		Grafana
+		Prometheus
+
+	Blockers:
+		Kubernetes not quite working
