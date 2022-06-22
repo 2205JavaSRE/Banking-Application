@@ -1,28 +1,22 @@
 apiVersion: apps/v1
-kind: Deployment
-metadata:
+kind: Deployment 
+metadata: 
   name: banking-api-deployment
   namespace: null-space
-  labels:
+  labels: 
     app: banking-api-app
 
 spec: # Specifications for the Deployment!
   replicas: 3
-  minReadySeconds: 5 # minimum seconds pod has to be active before it's considered available
-  strategy:
-      type: RollingUpdate #pods are gradually added
-      rollingUpdate:
-        maxSurge: 1 #number of pods created above number of replicas (1=4).
-        maxUnavailable: 0 #number of pods that are unavailable at any given time.
-  selector:
-    matchLabels:
+  selector: 
+    matchLabels: 
       app: banking-api-app # has to match the template labels app.
-  template:
-    metadata:
-      labels:
+  template: 
+    metadata: 
+      labels: 
         app: banking-api-app
     spec:
-      containers:
+      containers: 
         - name: banking-api-app-deployment
           image: ooido/banking-api
           ports:

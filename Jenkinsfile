@@ -77,7 +77,7 @@ pipeline {
             steps{
                 script{
                     sh "echo canary deployment"
-                    sh "kubectl set image -n null-space deployment/banking-api-deployment banking-api-deployment=ooido/banking-api:latest"
+                    sh "kubectl set image -n null-space deployment.apps/banking-api-deployment banking-api-app-deployment=ooido/banking-api:latest"
                 }
             }
         }
