@@ -22,7 +22,9 @@ SLIs:
 
 		Error rate
 			All HTTP5XX codes / All Successful HTTP requests
-			
+sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployment", status=~"5..", uri!="/metrics", uri!="NOT_FOUND"}[7d]))
+/
+sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployment", status!="5..", uri!="/metrics", uri!="NOT_FOUND"}[7d]))
 			ex:
 			sum(rate(http_requests_total{host="app", status~"5.."}[7d]))
 			/
@@ -30,7 +32,9 @@ SLIs:
 			
 		Availability
 			!HTTP5XX codes / all http requests
-			
+sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployment", status!~"5..", uri!="/metrics", uri!="NOT_FOUND"}[7d]))
+/
+sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployment", uri!="/metrics", uri!="NOT_FOUND"}[7d]))
 			ex:
 			sum(rate(http_requests_total{host="app", status!~"5.."}[7d]))
 			/

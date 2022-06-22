@@ -32,7 +32,7 @@ public class Monitor {
 
     public Timer requestLatency = Timer
             .builder("Request Latency")
-            .sla(Duration.ofMillis(3000), Duration.ofMillis(1500), Duration.ofMillis(500))
+            .sla(Duration.ofMillis(1000), Duration.ofMillis(500), Duration.ofMillis(250))
             .publishPercentiles(0.5, 0.9, 0.99)
             .description("Records the internal response time to a request")
             .tag("purpose", "metrics")

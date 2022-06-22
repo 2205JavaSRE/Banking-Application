@@ -103,3 +103,43 @@ Aaron:
 
 	Blockers:
 		Kubernetes not quite working
+
+  Tuesday, June 21th
+  #######################
+
+Summary of events since 17th:
+	Deployment is stable. We had to switch the java version in the application from 8 to 11 to implement JWT.
+
+Braylen:
+
+	Worked:
+        Reviewed Junit
+	Goal:
+        Review Junit and implement unit testing
+	Blockers:
+        Knowledge of Junit
+Jeremy:
+
+	Worked:
+		Deployment working.
+		I wrote pipeline script.
+
+	Goal:
+	    Why is logout 404ing?
+		Implement canary deployments
+		Grafana
+
+	Blockers:
+		I don't know how to access each instance, or add a data source source.
+Aaron:
+
+	Worked:
+		Deployment working.
+
+	Goal:
+		Implement canary deployments
+		Read PromQL documentation
+		Grafana
+	Blockers:
+		PromQL syntax/knowledge level
+

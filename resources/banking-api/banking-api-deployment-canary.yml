@@ -7,7 +7,13 @@ metadata:
     app: banking-api-app
 
 spec: # Specifications for the Deployment!
-  replicas: $CANARY_REPLICAS
+  replicas: 3
+  minReadySeconds: 5 # minimum seconds pod has to be active before it's considered available
+  strategy:
+      type: RollingUpdate #pods are gradually added
+      rollingUpdate:
+        maxSurge: 1 #number of pods created above number of replicas (1=4).
+        maxUnavailable: 0 #number of pods that are unavailable at any given time.
   selector:
     matchLabels:
       app: banking-api-app # has to match the template labels app.
