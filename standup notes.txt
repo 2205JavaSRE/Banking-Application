@@ -143,3 +143,41 @@ Aaron:
 	Blockers:
 		PromQL syntax/knowledge level
 
+  Tuesday, June 21th
+  #######################
+
+Summary of events since 21th:
+
+Braylen:
+
+	Worked:
+        Wrote test class
+	Goal:
+	    Postman sequence for demo
+        Resolve the mockito problem
+	Blockers:
+        Problem with mock dao testing, mockito, runtime error.
+Jeremy:
+
+	Worked:
+        Grafana
+        jenkinsfile
+	Goal:
+	    Powerpoint draft
+        Grafana, Timer slo graphed get the slo/historgrams graphed.
+        Jenkinsfile
+	Blockers:
+        Grafana/micrometer can't get data I want.
+
+Aaron:
+
+	Worked:
+        Grafana
+	Goal:
+        Get pod data grafana
+        SLO/HISTOGRAM/PERCENTILE
+	Blockers:
+        Grafana/micrometer can't get data I want.
+
+
+

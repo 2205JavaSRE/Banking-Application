@@ -6,7 +6,7 @@ pipeline {
         dbRegistry='ooido/pg-pod'
         registry='ooido/banking-api'
         dbDockerImage=''
-        apiDockerImage=''
+        dockerImage=''
         dockerHubCredentials='dockerHubCredentials'
     }
     stages {
