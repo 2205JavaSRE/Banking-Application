@@ -32,7 +32,7 @@ public class Monitor {
 
     public Timer requestLatency = Timer
             .builder("Request Latency")
-            .sla(Duration.ofMillis(1000), Duration.ofMillis(500), Duration.ofMillis(250))
+            .sla(Duration.ofMillis(1000), Duration.ofMillis(500), Duration.ofMillis(250), Duration.ofMillis(3000))
             .publishPercentileHistogram()
             .publishPercentiles(0.5, 0.9, 0.99)
             .minimumExpectedValue(Duration.ofMillis(10))
@@ -43,7 +43,7 @@ public class Monitor {
 
     public Timer dbRequestLatency = Timer
             .builder("Database Request Latency")
-            .sla(Duration.ofMillis(500), Duration.ofMillis(300), Duration.ofMillis(200))
+            .sla(Duration.ofMillis(500), Duration.ofMillis(300), Duration.ofMillis(200), Duration.ofMillis(1000))
             .publishPercentileHistogram()
             .publishPercentiles(0.5, 0.9, 0.99)
             .minimumExpectedValue(Duration.ofMillis(10))
