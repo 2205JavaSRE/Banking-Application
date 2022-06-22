@@ -114,7 +114,7 @@ public class RequestMappings {
             ctx.status(HttpStatus.IM_A_TEAPOT_418);
         });
 
-        app.get("/500", ctx -> {
+        app.post("/500", ctx -> {
             ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500);
         });
 
