@@ -24,4 +24,3 @@ sudo usermod -a -G docker jenkins
 sudo chkconfig jenkins on
 sudo service docker start
 sudo service jenkins start
-

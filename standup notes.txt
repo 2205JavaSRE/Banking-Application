@@ -147,7 +147,9 @@ Aaron:
   #######################
 
 Summary of events since 21th:
-
+    Braylen studied and implemented some Junit and mockito stuff, but ran into a problem.
+    Aaron and Jeremy worked on monitoring stuff but also ran into problems. Goal for today is to investigate and solve these problems.
+    Additionally, the tasks for the demo and the presentations have been delineated.
 Braylen:
 
 	Worked:

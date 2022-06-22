@@ -88,7 +88,7 @@ pipeline {
 //                 sh "kubectl apply -f ./resources/banking-api/banking-api-ingress.yml -n null-space"
 //             }
 //         }
-        stage("Rollout Deployment"){
+        stage("RollingUpdate Deployment"){
             steps{
                 script{
                     sh "echo canary deployment"
