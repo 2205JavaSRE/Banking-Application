@@ -54,12 +54,17 @@ public class AccountController {
     }
 
 	public static void updateAccountStatus(Context ctx) {
-		try {
-			Account a = ctx.bodyAsClass(Account.class);
-			AccountService.updateAccountStatus(a);
-		} catch (Exception e) {
-			ctx.status(HttpStatus.BAD_REQUEST_400);
-		}
+        User u = getCurrentUser(ctx);
+        if(u.isEmployee()) {
+            try {
+                Account a = ctx.bodyAsClass(Account.class);
+                AccountService.updateAccountStatus(a);
+            } catch (Exception e) {
+                ctx.status(HttpStatus.BAD_REQUEST_400);
+            }
+        }else{
+            ctx.status(HttpStatus.FORBIDDEN_403);
+        }
 	}
 	
 	//Decodes user info from JWT
