@@ -5,7 +5,7 @@ pipeline {
         //AWS_CREDS = credentials('awsCreds')
         //dbRegistry='ooido/pg-pod'
         registry='ooido/banking-api'
-        dbDockerImage=''
+        //dbDockerImage=''
         dockerImage=''
         dockerHubCredentials='dockerHubCredentials'
     }
