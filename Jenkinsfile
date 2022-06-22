@@ -3,6 +3,7 @@ pipeline {
     environment{
         DOCKERHUB_CREDS = credentials('dockerHubCredentials')
         AWS_CREDS = credentials('awsCreds')
+        registry = registry='ooido/banking-api'
     }
     stages {
         stage("Maven Build"){
@@ -31,7 +32,7 @@ pipeline {
                 script{
                     // Prompt, if yes build, if no abort
                     try {
-                        timeout(time: 1, unit: 'MINUTES'){
+                        timeout(time: 10, unit: 'MINUTES'){
                             approved = input message: 'Deploy to production?', ok: 'Continue',
                                 parameters: [choice(name: 'approved', choices: 'Yes\nNo', description: 'Deploy this build to production')]
                             if(approved != 'Yes'){
