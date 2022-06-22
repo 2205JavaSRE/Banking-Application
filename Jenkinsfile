@@ -3,7 +3,11 @@ pipeline {
     environment{
         DOCKERHUB_CREDS = credentials('dockerHubCredentials')
         AWS_CREDS = credentials('awsCreds')
-        registry = registry='ooido/banking-api'
+        dbRegistry='ooido/pg-pod'
+        registry='ooido/banking-api'
+        dbDockerImage=''
+        apiDockerImage=''
+        dockerHubCredentials='dockerHubCredentials'
     }
     stages {
         stage("Maven Build"){
@@ -16,15 +20,24 @@ pipeline {
             steps{
                 sh "docker image rm --force ooido/pg-pod"
                 sh "docker image rm --force ooido/banking-api"
-                sh "docker build -t ooido/pg-pod -f ./resources/postgres/Dockerfile ."
-                sh "docker build -t ooido/banking-api -f ./resources/banking-api/Dockerfile ."
+                script{
+                    dbDockerImage = docker.build "$dbRegistry"
+                    dockerImage = docker.build "$registry"
+                }
             }
         }
         stage("Docker Push"){
             steps{
-                sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
-                sh "docker image push ooido/pg-pod"
-                sh "docker image push ooido/banking-api"
+                //sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
+                //sh "docker image push ooido/pg-pod"
+                //sh "docker image push ooido/banking-api"
+                script{
+                    docker.withRegistry('', dockerHubCredentials){
+                        dbDockerImage.push("latest")
+                        dockerImage.push("$currentBuild.number")
+                        dockerImage.push("latest")
+                    }
+                }
             }
         }
         stage("Approval stage"){
@@ -78,7 +91,7 @@ pipeline {
             steps{
                 script{
                     sh "echo canary deployment"
-                    sh "kubectl set image -n null-space deployment.apps/banking-api-deployment banking-api-app-deployment=ooido/banking-api:latest"
+                    sh "kubectl set image -n null-space deployment.apps/banking-api-deployment banking-api-app-deployment=$registry:$currentBuild.number"
                 }
             }
         }
