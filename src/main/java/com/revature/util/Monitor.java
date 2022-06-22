@@ -35,6 +35,7 @@ public class Monitor {
             .sla(Duration.ofMillis(1000), Duration.ofMillis(500), Duration.ofMillis(250))
             .publishPercentileHistogram()
             .publishPercentiles(0.5, 0.9, 0.99)
+            .minimumExpectedValue(Duration.ofMillis(10))
             .description("Records the internal response time to a request")
             .tag("purpose", "metrics")
             .register(registry);
@@ -45,6 +46,7 @@ public class Monitor {
             .sla(Duration.ofMillis(500), Duration.ofMillis(300), Duration.ofMillis(200))
             .publishPercentileHistogram()
             .publishPercentiles(0.5, 0.9, 0.99)
+            .minimumExpectedValue(Duration.ofMillis(10))
             .description("Records the internal database response time to a request")
             .tag("purpose", "metrics")
             .register(registry);
