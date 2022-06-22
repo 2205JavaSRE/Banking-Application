@@ -71,7 +71,7 @@ public class Monitor {
         sqlErrors.increment();
     }
 
-    public void incrementServorError(){
+    public void incrementServerError(){
         internalServerErrors.increment();
     }
 

@@ -119,6 +119,7 @@ Dashboard:
 		Availability
 		Throughput
 		Error Rate
+		Burn Rate
 		Error Budget for each
 	Database:
 		Latency

@@ -150,6 +150,7 @@ Summary of events since 21th:
     Braylen studied and implemented some Junit and mockito stuff, but ran into a problem.
     Aaron and Jeremy worked on monitoring stuff but also ran into problems. Goal for today is to investigate and solve these problems.
     Additionally, the tasks for the demo and the presentations have been delineated.
+    Critical problem was identified. ConnectionFactory SQL error needs to be propagated to the rest of the program.
 Braylen:
 
 	Worked:
@@ -157,6 +158,8 @@ Braylen:
 	Goal:
 	    Postman sequence for demo
         Resolve the mockito problem
+        Mock DB call problem
+        Fix Critical Problem
 	Blockers:
         Problem with mock dao testing, mockito, runtime error.
 Jeremy:
@@ -168,6 +171,7 @@ Jeremy:
 	    Powerpoint draft
         Grafana, Timer slo graphed get the slo/historgrams graphed.
         Jenkinsfile
+
 	Blockers:
         Grafana/micrometer can't get data I want.
 
@@ -178,6 +182,7 @@ Aaron:
 	Goal:
         Get pod data grafana
         SLO/HISTOGRAM/PERCENTILE
+        Fix Critical Problem
 	Blockers:
         Grafana/micrometer can't get data I want.
 

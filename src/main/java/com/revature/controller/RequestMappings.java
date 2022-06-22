@@ -117,7 +117,7 @@ public class RequestMappings {
         app.after(ctx -> {
             User u = ctx.sessionAttribute("user");
             if(ctx.status() == 500){
-                monitor.incrementServorError();
+                monitor.incrementServerError();
             }
         });
     }
