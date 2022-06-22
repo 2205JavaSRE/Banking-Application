@@ -35,3 +35,7 @@ spec: # Specifications for the Deployment!
               value: postgres
             - name: db_password
               value: TNNFEtnnfe
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

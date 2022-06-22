@@ -64,9 +64,9 @@ sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployme
 SLOs:
 	API:
 		HTTP Request Latency:
-			99% of requests < 3 seconds
-			90% of requests < 1.5 seconds
-			50% of requests < 0.8 seconds
+			99% of requests < 1 seconds
+			90% of requests < 0.5 seconds
+			50% of requests < 0.25 seconds
 		
 		Availability:
 			97% ? 99%?
