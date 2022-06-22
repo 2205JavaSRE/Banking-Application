@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment{
-        DOCKERHUB_CREDS = credentials('dockerHubCredentials')
-        AWS_CREDS = credentials('awsCreds')
-        dbRegistry='ooido/pg-pod'
+        //DOCKERHUB_CREDS = credentials('dockerHubCredentials')
+        //AWS_CREDS = credentials('awsCreds')
+        //dbRegistry='ooido/pg-pod'
         registry='ooido/banking-api'
         dbDockerImage=''
         dockerImage=''
@@ -21,7 +21,7 @@ pipeline {
                 //sh "docker image rm --force ooido/pg-pod"
                 //sh "docker image rm --force ooido/banking-api"
                 script{
-                    dbDockerImage = docker.build "$dbRegistry"
+                    //dbDockerImage = docker.build "$dbRegistry"
                     dockerImage = docker.build "$registry"
                 }
             }
@@ -33,7 +33,7 @@ pipeline {
                 //sh "docker image push ooido/banking-api"
                 script{
                     docker.withRegistry('', dockerHubCredentials){
-                        dbDockerImage.push("latest")
+                        //dbDockerImage.push("latest")
                         dockerImage.push("$currentBuild.number")
                         dockerImage.push("latest")
                     }
