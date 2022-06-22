@@ -114,6 +114,10 @@ public class RequestMappings {
             ctx.status(HttpStatus.IM_A_TEAPOT_418);
         });
 
+        app.get("/500", ctx -> {
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500);
+        });
+
         app.after(ctx -> {
             User u = ctx.sessionAttribute("user");
             if(ctx.status() == 500){
