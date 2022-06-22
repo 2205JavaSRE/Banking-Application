@@ -42,15 +42,13 @@ sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployme
 		
 		Throughput:
 			Test?
-
-		Correctness:
-			Test?
 		
 	Database:
 		Latency:
 			Requests taking less than 3 seconds / all requests
 			Requests taking less than 1.5 seconds / all requests
 			Requests taking less than 0.5 seconds / all requests
+
 		Error rate:
 			All SQL based 500s  / all successful http requests 
 			or
@@ -71,17 +69,22 @@ SLOs:
 		Availability:
 			97% ? 99%?
 
+		Error Rate:
+		    between 99% and 99.9%
+
 		Throughput:
 			Test?
-			
-		Correctness:
-			Test?
+
 	
 	Database:
 		Latency: 
-			99% of requests < 3 seconds
-			90% of requests < 1.5 seconds
-			50% of all requests < 0.5 seconds
+			99% of requests < 0.5 seconds
+			90% of requests < 0.3 seconds
+			50% of all requests < 0.2 seconds
+
+        Availability:
+            97% ? 99%?
+
 		Error Rate:
 			between 99% and 99.9% (2 nines, 3 nines)
 			
@@ -113,10 +116,12 @@ Error Budget Policy:
 Dashboard:
 	API:
 		Latency
-		Error Rate
 		Availability
+		Throughput
+		Error Rate
 		Error Budget for each
 	Database:
 		Latency
+		Availability
 		Error Rate
 		Error Budget for each
