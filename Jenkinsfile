@@ -20,12 +20,11 @@ pipeline {
             steps{
                 //sh "docker image rm --force ooido/pg-pod"
                 //sh "docker image rm --force ooido/banking-api"
-                dir("./resources/banking-api"){
-                    script{
-                        //dbDockerImage = docker.build "$dbRegistry"
-                        dockerImage = docker.build "$registry"
-                    }
+                script{
+                    //dbDockerImage = docker.build "$dbRegistry"
+                    dockerImage = docker.build "$registry"
                 }
+
             }
         }
         stage("Docker Push"){
@@ -89,10 +88,11 @@ pipeline {
 //                 sh "kubectl apply -f ./resources/banking-api/banking-api-ingress.yml -n null-space"
 //             }
 //         }
-        stage("Canary Deployment"){
+        stage("Rollout Deployment"){
             steps{
                 script{
                     sh "echo canary deployment"
+                    //sh "kubectl set image -n null-space deployment.apps/banking-api-deployment banking-api-app-deployment=ooido/banking-api:latest"
                     sh "kubectl set image -n null-space deployment.apps/banking-api-deployment banking-api-app-deployment=$registry:$currentBuild.number"
                 }
             }
