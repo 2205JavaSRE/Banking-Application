@@ -18,8 +18,8 @@ pipeline {
         }
         stage("Docker Build"){
             steps{
-                sh "docker image rm --force ooido/pg-pod"
-                sh "docker image rm --force ooido/banking-api"
+                //sh "docker image rm --force ooido/pg-pod"
+                //sh "docker image rm --force ooido/banking-api"
                 script{
                     dbDockerImage = docker.build "$dbRegistry"
                     dockerImage = docker.build "$registry"
