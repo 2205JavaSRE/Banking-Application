@@ -14,13 +14,14 @@ public class ConnectionFactory {
 
     private static Connection connection;
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws DatabaseConnectionFailureException {
 
         try {
             connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
             MainDriver.monitor.incrementSqlCounter();
+            throw new DatabaseConnectionFailureException("Attempt to connect to the database was unsuccessful.");
         }
 
         return connection;
