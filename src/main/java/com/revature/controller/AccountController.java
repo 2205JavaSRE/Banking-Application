@@ -2,6 +2,7 @@ package com.revature.controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.revature.models.*;
 import com.revature.service.AccountService;
+import com.revature.service.UserService;
 import io.javalin.http.Context;
 import javalinjwt.JavalinJWT;
 
@@ -38,8 +39,7 @@ public class AccountController {
             try {
                 int id = Integer.parseInt(ctx.pathParam("id"));
                 List<Account> aList = AccountService.getAccountsByUserId(id);
-                //TODO reevaluate this code
-                if(aList.isEmpty()){
+                if(!UserService.existsByUserID(id)){
                     ctx.status(HttpStatus.NOT_FOUND_404);
                 }else{
                     ctx.json(aList);

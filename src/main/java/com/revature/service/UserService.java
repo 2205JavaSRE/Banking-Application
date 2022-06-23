@@ -23,4 +23,8 @@ public class UserService {
 	public static User getUser(String username) {
 		return uDao.getUserByUsername(username);
 	}
+
+	public static boolean existsByUserID(int id){
+		return uDao.existsByUserID(id);
+	}
 }
