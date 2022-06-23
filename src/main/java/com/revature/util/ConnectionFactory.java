@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    private static String URL = System.getenv("");
+    private static String URL = System.getenv("db_url");
     private static String USERNAME = System.getenv("db_username");
     private static String PASSWORD = System.getenv("db_password");
 
