@@ -10,8 +10,6 @@ public class UserService {
 	private UserService() {}
 	
 	public static boolean createUser(User u) {
-		System.out.println("AuthenticationController.createUser: " + u);
-		System.out.println("exists ?:" + uDao.existsByName(u.getUsername()));
 		if (uDao.existsByName(u.getUsername())) {
 			return false;
 		} else {

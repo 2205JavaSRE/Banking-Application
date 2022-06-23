@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-import com.revature.models.User;
 import com.revature.util.Monitor;
 import io.javalin.Javalin;
 
@@ -16,11 +15,7 @@ public class RequestMappings {
     	app.before(AuthenticationController.decodeHandler);
 
         //General login paths
-        app.post("/api/v1/login", ctx -> {
-            monitor.getRequestLatency().record(() -> {
-                AuthenticationController.authenticate(ctx);
-            });
-        });
+        app.post("/api/v1/login", AuthenticationController::authenticate);
 
         app.post("/api/v1/logout", ctx -> {
             ctx.removeCookie("jwt");
