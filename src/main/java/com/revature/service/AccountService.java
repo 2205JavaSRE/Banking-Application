@@ -8,8 +8,8 @@ import com.revature.models.User;
 
 public class AccountService {
 	
-	private static final AccountDao aDao = new AccountDao();
-	private static final UserDao uDao = new UserDao();
+	static AccountDao aDao = new AccountDao();
+	static UserDao uDao = new UserDao();
 	
 	private AccountService() {}
 	
