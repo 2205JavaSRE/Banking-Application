@@ -7,14 +7,12 @@ Date Approved:
 Approved by: Benjamin Arayathel
 
 SLIs:
-	All averages are over the last week.
 	API: 
 		HTTP Request Latency
-			Requests taking less than 3 seconds / all requests
-			Requests taking less than 1.5 seconds / all requests
+
 			Requests taking less than 1 seconds / all requests
-			Requests taking less than 0.8 seconds / all requests
 			Requests taking less than 0.5 seconds / all requests
+			Requests taking less than 0.25 seconds / all requests
 			
 			ex:
             Maybe take account of outliers in the calculation (logout).
@@ -45,9 +43,9 @@ sum(rate(jetty_server_requests_seconds_count{container="banking-api-app-deployme
 		
 	Database:
 		Latency:
-			Requests taking less than 3 seconds / all requests
-			Requests taking less than 1.5 seconds / all requests
 			Requests taking less than 0.5 seconds / all requests
+			Requests taking less than 0.3 seconds / all requests
+			Requests taking less than 0.2 seconds / all requests
 
 		Error rate:
 			All SQL based 500s  / all successful http requests 

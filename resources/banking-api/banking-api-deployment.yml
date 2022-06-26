@@ -8,7 +8,7 @@ metadata:
 
 spec: # Specifications for the Deployment!
   replicas: 3
-  minReadySeconds: 5 # minimum seconds pod has to be active before it's considered available
+  minReadySeconds: 30 # minimum seconds pod has to be active before it's considered available
   strategy:
       type: RollingUpdate #pods are gradually added
       rollingUpdate:
@@ -28,13 +28,9 @@ spec: # Specifications for the Deployment!
           ports:
             - containerPort: 7700
           imagePullPolicy: Always
-          env:
-            - name: db_url
-              value: jdbc:postgresql://postgres-service:5432/postgres
-            - name: db_username
-              value: postgres
-            - name: db_password
-              value: TNNFEtnnfe
+          envFrom:
+            - configMapRef:
+                name: banking-api-config
           resources:
             limits:
               memory: "128Mi"

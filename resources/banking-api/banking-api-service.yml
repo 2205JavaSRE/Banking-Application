@@ -13,5 +13,3 @@ spec:
       targetPort: 7700
       protocol: TCP
       name: http
-
-

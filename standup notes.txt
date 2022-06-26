@@ -143,10 +143,10 @@ Aaron:
 	Blockers:
 		PromQL syntax/knowledge level
 
-  Tuesday, June 21th
+  Wednesday, June 22th
   #######################
 
-Summary of events since 21th:
+Summary of events since 22nd:
     Braylen studied and implemented some Junit and mockito stuff, but ran into a problem.
     Aaron and Jeremy worked on monitoring stuff but also ran into problems. Goal for today is to investigate and solve these problems.
     Additionally, the tasks for the demo and the presentations have been delineated.
@@ -186,5 +186,94 @@ Aaron:
 	Blockers:
         Grafana/micrometer can't get data I want.
 
+  Thursday, June 23th
+  #######################
+
+Summary of events since 21th:
+    Braylen studied and implemented some Junit and mockito stuff, but ran into a problem.
+    Aaron and Jeremy worked on monitoring stuff but also ran into problems. Goal for today is to investigate and solve these problems.
+    Additionally, the tasks for the demo and the presentations have been delineated.
+    Critical problem was identified. ConnectionFactory SQL error needs to be propagated to the rest of the program.
+Braylen:
+
+	Worked:
+        Fixed Critical Problem
+        JUnit issue
+	Goal:
+        Presentation
+        JUnit
+	Blockers:
+	    Merge? Junit
+
+Jeremy:
+
+	Worked:
+        Jenkinsfile deployment, using plugins instead of shell execution.
+        Powerpoint Draft
+        Grafana Dashboard
+        Added 500 generator
+	Goal:
+	    Powerpoint draft
+        Grafana, Timer slo graphed get the slo/historgrams graphed.
+        Jenkinsfile
+        An Alert?
+
+	Blockers:
+	    Alerts
 
 
+Aaron:
+
+	Worked:
+        Postman sequence partially implement
+        Complete
+        Presentation
+
+	Goal:
+        Need primary owner
+        Inserting incident sim
+	Blockers:
+        Database access
+
+  Friday, June 24th
+  #######################
+
+Summary of events since 21th:
+
+Braylen:
+
+	Worked:
+        Git Problem
+        JUnit problems
+        Presentation
+	Goal:
+	    All Tests
+        Presentation
+	Blockers:
+	    Merge?
+	    Junit
+
+Jeremy:
+
+	Worked:
+        Implemented Alerts
+        Refined SLOs
+        Prettified the Dashboard, hourly
+        Powerpoint
+        Git Problem
+	Goal:
+        Add incident
+        presents
+	Blockers:
+        Burn Rate
+
+
+Aaron:
+
+	Worked:
+        Powerpoint
+        Git Problem
+	Goal:
+
+	Blockers:
+        Burn Rate
