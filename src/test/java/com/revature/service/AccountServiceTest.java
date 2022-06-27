@@ -83,8 +83,6 @@ public class AccountServiceTest {
 
 	@After
 	public void tearDown() {
-		System.out.println("---------------------------");
-		
 		braylen = null;
 		mike = null;
 		goodOldAccount = null;
@@ -93,6 +91,8 @@ public class AccountServiceTest {
 		badBalanceNewAccount = null;
 		pendingAccounts.clear();
 		accountsByUserId.clear();
+		
+		System.out.println("---------------------------");
 	}
 
 	@Test
@@ -143,7 +143,7 @@ public class AccountServiceTest {
 		assertTrue(goodNewAccount.isApproved());
 		verify(aDao).updateAccount(goodNewAccount);
 		
-		System.out.println("testUpdateAccountStatus() started.");
+		System.out.println("testUpdateAccountStatus() completed.");
 	}
 
 }
