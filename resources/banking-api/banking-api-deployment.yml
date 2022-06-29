@@ -21,6 +21,7 @@ spec: # Specifications for the Deployment!
     metadata:
       labels:
         app: banking-api-app
+        release: "stable"
     spec:
       containers:
         - name: banking-api-app-deployment
