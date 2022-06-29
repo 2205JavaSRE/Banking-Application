@@ -1,6 +1,19 @@
 #!/bin/bash
 sudo yum -y update
 
+echo "Installing kubectl 1.21.1"
+sudo touch /etc/yum.repos.d/kubernetes.repo
+sudo bash -c 'cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF'
+sudo yum install -y kubectl-1.21.1
+
 echo "Install Java JDK 8"
 yum remove -y java
 yum install -y java-1.8.0-openjdk
