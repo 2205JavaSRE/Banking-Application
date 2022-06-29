@@ -5,7 +5,7 @@ import com.revature.models.User;
 
 public class AuthenticationService {
 	
-	private static final UserDao uDao = new UserDao();
+	static UserDao uDao = new UserDao();
 	
 	private AuthenticationService() {}
 	
